@@ -1,10 +1,36 @@
+import { Link } from 'react-router-dom'
 import Header from '../../header/Header'
 import './index.css'
 
 export default function Cart() {
     return (
-        <section className="h-100 h-custom" style={{ backgroundColor: "#d2c9ff" }}>
+        <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
             <div className="container py-5 h-100">
+
+                {/* Add breadcrumb o day */}
+                <div className="row">
+                    <div className="col">
+                        <nav
+                            aria-label="breadcrumb"
+                            className="bg-body-tertiary rounded-3 p-3 mb-4"
+                        >
+
+                            {/* Breadcrumb o day, chu y xem co nen sai ko */}
+                            <ol className="breadcrumb mb-0">
+                                <li className="breadcrumb-item">
+                                    <Link to={'/'}>Home</Link>
+                                </li>
+                                <li className="breadcrumb-item active" aria-current="page">
+                                    Product Cart
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+                {/* Add breadcrumb o day */}
+
+
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-12">
                         <div
@@ -160,14 +186,6 @@ export default function Cart() {
                                                 </div>
                                             </div>
                                             <hr className="my-4" />
-                                            <div className="pt-5">
-                                                <h6 className="mb-0">
-                                                    <a href="#!" className="text-body">
-                                                        <i className="fas fa-long-arrow-alt-left me-2" />
-                                                        Back to shop
-                                                    </a>
-                                                </h6>
-                                            </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 bg-grey">
@@ -212,7 +230,7 @@ export default function Cart() {
                                                 className="btn btn-dark btn-block btn-lg"
                                                 data-mdb-ripple-color="dark"
                                             >
-                                                Register
+                                                Check out
                                             </button>
                                         </div>
                                     </div>

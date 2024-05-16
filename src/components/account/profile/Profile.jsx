@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../header/Header";
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
@@ -16,6 +16,7 @@ export default function Profile() {
             if (accountId) {
                 AccountService.getAccountById(accountId)
                     .then(res => {
+                        console.log(res.data)
                         setAccount(res.data)
                     })
                     .catch(
@@ -42,10 +43,7 @@ export default function Profile() {
                             {/* Breadcrumb o day, chu y xem co nen sai ko */}
                             <ol className="breadcrumb mb-0">
                                 <li className="breadcrumb-item">
-                                    <a href="#">Home</a>
-                                </li>
-                                <li className="breadcrumb-item">
-                                    <a href="#">User</a>
+                                    <Link to={'/'}>Home</Link>
                                 </li>
                                 <li className="breadcrumb-item active" aria-current="page">
                                     User Profile
@@ -64,9 +62,9 @@ export default function Profile() {
                                     className="rounded-circle img-fluid"
                                     style={{ width: 150 }}
                                 />
-                                <h5 className="my-3">John Smith</h5>
-                                <p className="text-muted mb-1">Full Stack Developer</p>
-                                <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                                <h5 className="my-3">{account.fullName}</h5>
+                                <p className="text-muted mb-1">V.I.P</p>
+                                <p className="text-muted mb-4">{account.address}</p>
                                 <div className="d-flex justify-content-center mb-2">
                                     <button
                                         type="button"
@@ -131,7 +129,7 @@ export default function Profile() {
                                         <p className="mb-0">Full Name</p>
                                     </div>
                                     <div className="col-sm-9">
-                                        <p className="text-muted mb-0">Johnatan Smith</p>
+                                        <p className="text-muted mb-0">{account.fullName}</p>
                                     </div>
                                 </div>
                                 <hr />
@@ -140,7 +138,7 @@ export default function Profile() {
                                         <p className="mb-0">Email</p>
                                     </div>
                                     <div className="col-sm-9">
-                                        <p className="text-muted mb-0">example@example.com</p>
+                                        <p className="text-muted mb-0">{account.email}</p>
                                     </div>
                                 </div>
                                 <hr />
@@ -149,25 +147,16 @@ export default function Profile() {
                                         <p className="mb-0">Phone</p>
                                     </div>
                                     <div className="col-sm-9">
-                                        <p className="text-muted mb-0">(097) 234-5678</p>
+                                        <p className="text-muted mb-0">{account.phone}</p>
                                     </div>
                                 </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <p className="mb-0">Mobile</p>
-                                    </div>
-                                    <div className="col-sm-9">
-                                        <p className="text-muted mb-0">(098) 765-4321</p>
-                                    </div>
-                                </div>
-                                <hr />
+                                <hr />                            
                                 <div className="row">
                                     <div className="col-sm-3">
                                         <p className="mb-0">Address</p>
                                     </div>
                                     <div className="col-sm-9">
-                                        <p className="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                                        <p className="text-muted mb-0">{account.address}</p>
                                     </div>
                                 </div>
                             </div>

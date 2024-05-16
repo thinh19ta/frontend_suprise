@@ -40,7 +40,7 @@ export default function Products() {
     return (
 
         <div>
-            <Header />
+            {/* <Header /> */}
             {/* // margin top by mt-5 here... */}
             <div className="container bg-white mt-5">
                 <nav className="navbar navbar-expand-md navbar-light bg-white">

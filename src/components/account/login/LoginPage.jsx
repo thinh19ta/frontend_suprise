@@ -25,7 +25,6 @@ export default function () {
             userName,
             password
         }
-        console.log(account)
         AccountService.login(account).then(
             res => {
                 if (res.status === 200) {
@@ -54,10 +53,10 @@ export default function () {
                                                 style={{ width: 185 }}
                                                 alt="logo"
                                             />
-                                            <h4 className="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
+                                            {/* <h4 className="mt-1 mb-5 pb-1">We are The Lotus Team</h4> */}
                                         </div>
                                         <form>
-                                            <p>Please login to your account</p>
+                                            <h5 className='text-dark float-end'>Please login!</h5>
                                             <div data-mdb-input-init="" className="form-outline mb-3">
                                                 <input
                                                     type="email"
@@ -84,7 +83,7 @@ export default function () {
                                                     Password
                                                 </label> */}
                                             </div>
-
+                                            <h6 className='text-danger text-center'>{error}</h6>
                                             {/* Delete margin bottom mt-5 above */}
                                             <div className="text-center pt-1 pb-1">
                                                 <button

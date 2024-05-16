@@ -1,6 +1,17 @@
+import { Link, NavLink } from 'react-router-dom'
 import './index.css'
+import useAuth from '../../hooks/useAuth'
+import { useContext } from 'react'
+import { AuthContext } from '../../hooks/AuthContext'
 
-export default function () {
+export default function Header() {
+
+    const [, accountId] = useAuth()
+    const context = useContext(AuthContext)
+
+    const handleLogout = () => {
+        context.logout()
+    }
     return (
         <header className="App-header">
             <>
@@ -22,24 +33,24 @@ export default function () {
                             <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 d-none d-lg-block d-md-block-d-sm-block d-xs-none text-end">
                                 <span className="me-3">
                                     <i className="fa-solid fa-truck text-muted me-1" />
-                                    <a className="text-muted" href="#">
+                                    <a className="text-muted" href="https://ghn.vn/blogs/trang-thai-don-hang" target="_blank" rel="noopener noreferrer">
                                         Shipping
                                     </a>
                                 </span>
-                                <span className="me-3">
+                                {/* <span className="me-3">
                                     <i className="fa-solid fa-file  text-muted me-2" />
                                     <a className="text-muted" href="#">
                                         Policy
                                     </a>
-                                </span>
+                                </span> */}
                             </div>
                         </div>
                     </div>
                 </div>
                 <nav className="navbar navbar-expand-lg bg-white sticky-top navbar-light p-3 shadow-sm">
                     <div className="container">
-                        <a className="navbar-brand" href="#">
-                            <i class="fa-solid fa-gifts"></i> <strong>Surprise Box</strong>
+                        <a className="navbar-brand" href="/">
+                            <i className="fa-solid fa-gifts"></i> <strong>Surprise Box</strong>
                         </a>
                         <button
                             className="navbar-toggler"
@@ -78,48 +89,75 @@ export default function () {
                                     />
                                     <button className="btn btn-warning text-white">Search</button>
                                 </div>
-                            </div>
+                            </div>                        
+
                             <ul className="navbar-nav ms-auto ">
                                 <li className="nav-item">
-                                    <a
-                                        className="nav-link mx-2 text-uppercase active"
-                                        aria-current="page"
-                                        href="#"
+                                    <NavLink
+                                        className="nav-link mx-2 text-uppercase"
+                                        activeClassName="active"
+                                        to={'/'}
+                                        exact
                                     >
                                         Home
-                                    </a>
+                                    </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link mx-2 text-uppercase" href="#">
+                                    <NavLink
+                                        className="nav-link mx-2 text-uppercase"
+                                        activeClassName="active"
+                                        to={'/shop'}
+                                    >
                                         Shop
-                                    </a>
+                                    </NavLink>
                                 </li>
-                                {/* <li className="nav-item">
-                                    <a className="nav-link mx-2 text-uppercase" href="#">
-                                        Catalog
-                                    </a>
-                                </li> */}
                                 <li className="nav-item">
-                                    <a className="nav-link mx-2 text-uppercase" href="#">
+                                    <NavLink
+                                        className="nav-link mx-2 text-uppercase"
+                                        activeClassName="active"
+                                        to={'/blogs'}
+                                    >
                                         Blogs
-                                    </a>
+                                    </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link mx-2 text-uppercase" href="#">
+                                    <NavLink
+                                        className="nav-link mx-2 text-uppercase"
+                                        activeClassName="active"
+                                        to={'/about'}
+                                    >
                                         About us
-                                    </a>
+                                    </NavLink>
                                 </li>
                             </ul>
+
                             <ul className="navbar-nav ms-auto ">
                                 <li className="nav-item">
-                                    <a className="nav-link mx-2 text-uppercase" href="#">
-                                        <i className="fa-solid fa-cart-shopping me-1" /> Cart
-                                    </a>
+                                    {
+                                        accountId &&
+                                        <Link className="nav-link mx-2 text-uppercase" to={'/cart'}>
+                                            <i className="fa-solid fa-cart-shopping me-1" /> Cart
+                                        </Link>
+                                    }
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link mx-2 text-uppercase" href="#">
-                                        <i className="fa-solid fa-circle-user me-1" /> Account
-                                    </a>
+                                    {
+                                        accountId ?
+                                            <div className='dropdown'>
+                                                <Link className="nav-link mx-2 text-uppercase dropdown-toggle"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i className="fa-solid fa-circle-user me-1" /> Account
+                                                </Link>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                    <li><Link class="dropdown-item" to={'/profile'}>My profile</Link></li>
+                                                    <li><Link class="dropdown-item" onClick={handleLogout}>Log out</Link></li>
+                                                </ul>
+                                            </div>
+                                            :
+                                            <Link className="nav-link mx-2 text-uppercase" to={'/login'}>
+                                                <i class="fa-solid fa-right-to-bracket"></i> Login
+                                            </Link>
+                                    }
                                 </li>
                             </ul>
                         </div>

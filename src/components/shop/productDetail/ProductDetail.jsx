@@ -28,7 +28,7 @@ export default function ProductDetail() {
                         <div className="col-md-6">
                             <img
                                 className="card-img-top mb-5 mb-md-0"
-                                src={`${process.env.PUBLIC_URL}/assets/images/products/anvat3.jpg`}
+                                src={`${process.env.PUBLIC_URL}/assets/images/products/daydeo1.jpg`}
                                 alt="..."
                             />
                         </div>
