@@ -42,7 +42,7 @@ export default function Products() {
         <div>
             {/* <Header /> */}
             {/* // margin top by mt-5 here... */}
-            <div className="container bg-white mt-5">
+            <div className="container bg-white mt-3">
                 <nav className="navbar navbar-expand-md navbar-light bg-white">
                     <div className="container-fluid p-0">
                         {" "}
@@ -64,7 +64,7 @@ export default function Products() {
                         <div className="collapse navbar-collapse" id="myNav">
                             <div className="navbar-nav ms-auto">
                                 {" "}
-                                <a className="nav-link active" aria-current="page" href="#">
+                                <a className="nav-link" aria-current="page" href="#">
                                     All
                                 </a>{" "}
                                 <a className="nav-link" href="#">

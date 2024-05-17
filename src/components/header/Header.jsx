@@ -3,6 +3,7 @@ import './index.css'
 import useAuth from '../../hooks/useAuth'
 import { useContext } from 'react'
 import { AuthContext } from '../../hooks/AuthContext'
+import toast from 'react-hot-toast'
 
 export default function Header() {
 
@@ -11,7 +12,9 @@ export default function Header() {
 
     const handleLogout = () => {
         context.logout()
+        toast.success("Logged out!")
     }
+
     return (
         <header className="App-header">
             <>
@@ -91,13 +94,14 @@ export default function Header() {
                                 </div>
                             </div>                        
 
+                            {/* comment activeClassName="active", but it still work! */}
+
                             <ul className="navbar-nav ms-auto ">
                                 <li className="nav-item">
                                     <NavLink
                                         className="nav-link mx-2 text-uppercase"
-                                        activeClassName="active"
-                                        to={'/'}
-                                        exact
+                                        // activeClassName="active"
+                                        to={'/'}                                    
                                     >
                                         Home
                                     </NavLink>
@@ -105,7 +109,7 @@ export default function Header() {
                                 <li className="nav-item">
                                     <NavLink
                                         className="nav-link mx-2 text-uppercase"
-                                        activeClassName="active"
+                                        // activeClassName="active"
                                         to={'/shop'}
                                     >
                                         Shop
@@ -114,7 +118,7 @@ export default function Header() {
                                 <li className="nav-item">
                                     <NavLink
                                         className="nav-link mx-2 text-uppercase"
-                                        activeClassName="active"
+                                        // activeClassName="active"
                                         to={'/blogs'}
                                     >
                                         Blogs
@@ -123,7 +127,7 @@ export default function Header() {
                                 <li className="nav-item">
                                     <NavLink
                                         className="nav-link mx-2 text-uppercase"
-                                        activeClassName="active"
+                                        // activeClassName="active"
                                         to={'/about'}
                                     >
                                         About us
@@ -148,14 +152,14 @@ export default function Header() {
                                                     id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                                     <i className="fa-solid fa-circle-user me-1" /> Account
                                                 </Link>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                    <li><Link class="dropdown-item" to={'/profile'}>My profile</Link></li>
-                                                    <li><Link class="dropdown-item" onClick={handleLogout}>Log out</Link></li>
+                                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                    <li><Link className="dropdown-item" to={'/profile'}>My profile</Link></li>
+                                                    <li><Link className="dropdown-item" onClick={handleLogout}>Log out</Link></li>
                                                 </ul>
                                             </div>
                                             :
                                             <Link className="nav-link mx-2 text-uppercase" to={'/login'}>
-                                                <i class="fa-solid fa-right-to-bracket"></i> Login
+                                                <i className="fa-solid fa-right-to-bracket"></i> Login
                                             </Link>
                                     }
                                 </li>

@@ -1,8 +1,17 @@
 export default function Carousel() {
+
+    const imageStyle = {
+        maxWidth: '88%', /* Adjust this value as needed */
+        maxHeight: '450px', /* Adjust this value as needed */
+        margin: '0 auto', /* Center the image horizontally */
+        objectFit: 'cover', /* Ensures the image covers the given dimensions without stretching */
+        borderRadius: '10px' /* Adjust this value for the desired roundness */
+    }
+
     return (
         <div
             id="carouselExampleCaptions"
-            className="carousel slide"
+            className="carousel slide mt-2"
             data-bs-ride="carousel"
         >
             <div className="carousel-indicators">
@@ -29,21 +38,21 @@ export default function Carousel() {
             </div>
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                    <img  src="https://th.bing.com/th/id/R.0dbdeb615cba4ecdb906a4a08a7b7978?rik=F68K8x07wWlr%2fQ&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fWW3Y3zB.jpg&ehk=cKsD3%2f8VZq7W5rNsu2l4fEbc4fm7C5a0SOKYOW8YWRU%3d&risl=&pid=ImgRaw&r=0" className="d-block w-50" alt="..." />
+                    <img src="https://wallpapers.com/images/hd/1920-x-1080-hd-1qq8r4pnn8cmcew4.jpg" className="d-block w-100" alt="..." style={imageStyle} />
                     <div className="carousel-caption d-none d-md-block">
                         <h5>First slide label</h5>
                         <p>Some representative placeholder content for the first slide.</p>
                     </div>
                 </div>
                 <div className="carousel-item">
-                    <img src="https://th.bing.com/th/id/R.0dbdeb615cba4ecdb906a4a08a7b7978?rik=F68K8x07wWlr%2fQ&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fWW3Y3zB.jpg&ehk=cKsD3%2f8VZq7W5rNsu2l4fEbc4fm7C5a0SOKYOW8YWRU%3d&risl=&pid=ImgRaw&r=0" className="d-block w-100" alt="..." />
+                    <img src="https://i.pinimg.com/originals/9c/7b/e4/9c7be43979a736a8695361a544630b97.jpg" className="d-block w-100" alt="..." style={imageStyle} />
                     <div className="carousel-caption d-none d-md-block">
                         <h5>Second slide label</h5>
                         <p>Some representative placeholder content for the second slide.</p>
                     </div>
                 </div>
                 <div className="carousel-item">
-                    <img src="https://th.bing.com/th/id/R.0dbdeb615cba4ecdb906a4a08a7b7978?rik=F68K8x07wWlr%2fQ&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fWW3Y3zB.jpg&ehk=cKsD3%2f8VZq7W5rNsu2l4fEbc4fm7C5a0SOKYOW8YWRU%3d&risl=&pid=ImgRaw&r=0" className="d-block w-100" alt="..." />
+                    <img src="https://cdn.wallpapersafari.com/10/60/PAJEs1.jpg" className="d-block w-100" alt="..." style={imageStyle} />
                     <div className="carousel-caption d-none d-md-block">
                         <h5>Third slide label</h5>
                         <p>Some representative placeholder content for the third slide.</p>

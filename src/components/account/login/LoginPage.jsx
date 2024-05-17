@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react'
 import './index.css'
 import { AuthContext } from '../../../hooks/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import AccountService from "../../../services/AccountService"
+import toast from 'react-hot-toast'
 
 
 export default function () {
@@ -10,7 +11,6 @@ export default function () {
     const navigate = useNavigate()
     const [userName, setUserName] = useState('')
     const [password, setpassword] = useState('')
-    const [error, setError] = useState('')
 
     const handleUserNameChange = e => {
         setUserName(e.target.value)
@@ -30,17 +30,49 @@ export default function () {
                 if (res.status === 200) {
                     context.login(res.data)
                     navigate('/')
+                    toast.success("Login successfully!")
                 }
             }
         ).catch(e => {
-            setError("Invalid username or password.")
+            toast.error("Invalid username or password.",
+                { position: "top-left" }
+            )
         }
         )
+    }
+
+    const handleCreateNew = () => {
+        navigate('/register')
     }
 
     return (
         <section className="h-100 gradient-form" style={{ backgroundColor: "#eee" }}>
             <div className="container py-5 h-100">
+
+                {/* Breadcrumb o day, chu y xem co nen sai ko */}
+                <div className="row">
+                    <div className="col">
+                        <nav
+                            aria-label="breadcrumb"
+                            className="bg-body-tertiary rounded-3 p-3 mb-4"
+                        >
+                            {/* Breadcrumb o day, chu y xem co nen sai ko */}
+                            <ol className="breadcrumb mb-0">
+                                <li className="breadcrumb-item">
+                                    <Link to={'/'}>Home</Link>
+                                </li>
+                                <li className="breadcrumb-item" aria-current="page">
+                                    Account
+                                </li>
+                                <li className="breadcrumb-item active" aria-current="page">
+                                    Login
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-xl-10">
                         <div className="card rounded-3 text-black">
@@ -56,7 +88,6 @@ export default function () {
                                             {/* <h4 className="mt-1 mb-5 pb-1">We are The Lotus Team</h4> */}
                                         </div>
                                         <form>
-                                            <h5 className='text-dark float-end'>Please login!</h5>
                                             <div data-mdb-input-init="" className="form-outline mb-3">
                                                 <input
                                                     type="email"
@@ -83,7 +114,7 @@ export default function () {
                                                     Password
                                                 </label> */}
                                             </div>
-                                            <h6 className='text-danger text-center'>{error}</h6>
+
                                             {/* Delete margin bottom mt-5 above */}
                                             <div className="text-center pt-1 pb-1">
                                                 <button
@@ -104,6 +135,7 @@ export default function () {
                                                     data-mdb-button-init=""
                                                     data-mdb-ripple-init=""
                                                     className="btn btn-outline-danger"
+                                                    onClick={handleCreateNew}
                                                 >
                                                     Create new
                                                 </button>
@@ -113,12 +145,14 @@ export default function () {
                                 </div>
                                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
                                     <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                                        <h4 className="mb-4">We are more than just a company</h4>
-                                        <p className="small mb-0">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                            do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                            Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                            laboris nisi ut aliquip ex ea commodo consequat.
+                                        
+                                        <p className="medium mb-0">
+                                            Surprise Box rất vui khi được chia sẻ những khoảnh khắc đặc biệt của
+                                            cuộc sống cùng bạn.
+                                            <br />
+                                            Tại đây, chúng tôi không chỉ bán các sản phẩm, mà chúng tôi còn muốn
+                                            tạo ra những trải nghiệm tuyệt vời và ý nghĩa cho bạn và những người
+                                            thân yêu của bạn.
                                         </p>
                                     </div>
                                 </div>

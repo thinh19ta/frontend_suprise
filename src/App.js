@@ -14,10 +14,12 @@ import Register from './components/account/register/Register';
 import Profile from './components/account/profile/Profile';
 import Cart from './components/shop/cart/Cart';
 import Shop from './components/shop/shop/Shop';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <div>
+      <Toaster position="top-right" reverseOrder={false}/>
       <AuthProvider>
         <BrowserRouter>
           <Routes>
