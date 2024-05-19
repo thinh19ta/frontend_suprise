@@ -25,7 +25,7 @@ export default function ProductDetail() {
             <section className="py-5 bg-white">
                 <div className="container px-4 px-lg-5 my-5">
                     <div className="row gx-4 gx-lg-5 align-items-center">
-                        <div className="col-md-6">
+                        <div className="col-md-5">
                             <img
                                 className="card-img-top mb-5 mb-md-0"
                                 src={`${process.env.PUBLIC_URL}/assets/images/products/daydeo1.jpg`}
@@ -34,16 +34,13 @@ export default function ProductDetail() {
                         </div>
                         <div className="col-md-6">
                             <div className="small mb-1">SKU: BST-498</div>
-                            <h1 className="display-5 fw-bolder">Shop item template</h1>
+                            <h2 className="fw-bolder">{product.name}</h2>
                             <div className="fs-5 mb-5">
                                 {/* <span className="text-decoration-line-through">$45.00</span> */}
-                                <span>$40.00</span>
+                                <span className="text-danger"><CurrencyFormat value={product.price} displayType={'text'} thousandSeparator={true} suffix={' vnđ'} /></span>
                             </div>
                             <p className="lead">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium
-                                at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi
-                                alias magni, accusamus eius blanditiis delectus ipsam minima ea iste
-                                laborum vero?
+                                {product.description}
                             </p>
                             <div className="d-flex">
                                 <input
@@ -54,8 +51,8 @@ export default function ProductDetail() {
                                     style={{ maxWidth: "3rem" }}
                                 />
                                 <button className="btn btn-outline-dark flex-shrink-0" type="button">
-                                    <i className="bi-cart-fill me-1" />
-                                    Add to cart
+                                    Add to cart{" "}
+                                    <i class="fa-solid fa-cart-shopping fa-bounce"></i>
                                 </button>
                             </div>
                         </div>

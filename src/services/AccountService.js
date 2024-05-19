@@ -7,7 +7,7 @@ const url = `${home_url}/accounts`
 
 class AccountService{
 
-    addNewAccount(account){
+    register(account){
         return axios.post(`${url}/register`, account)
     }
 

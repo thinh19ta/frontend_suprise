@@ -1,15 +1,79 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import AccountService from "../../../services/AccountService"
 
 export default function Register() {
 
+    const navigate = useNavigate()
     const [fullName, setFullName] = useState('')
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
-    const [phone, setphone] = useState('')
+    const [phone, setPhone] = useState('')
     const [address, setAddress] = useState('')
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        switch (name) {
+            case 'fullName':
+                setFullName(value);
+                break;
+            case 'userName':
+                setUserName(value);
+                break;
+            case 'password':
+                setPassword(value);
+                break;
+            case 'email':
+                setEmail(value);
+                break;
+            case 'phone':
+                setPhone(value);
+                break;
+            case 'address':
+                setAddress(value);
+                break;
+            default:
+                break;
+        }
+    };
+
+    const handleSubmit = (e) => {
+        const accountRequest = {
+            fullName,
+            userName,
+            password,
+            email,
+            phone,
+            address,
+            roles: "ROLE_USER"
+        }
+
+        if (fullName && userName && password && phone && address) {
+            e.preventDefault()
+            AccountService.register(accountRequest)
+                .then(res => {
+                    if (res.data) {
+                        navigate('/login')
+                        toast.success("Sign up successfully!")
+                    } else {
+                        toast.error("User name already exists, choose another one!")
+                    }
+                })
+                .catch(
+                    e => {
+                        console.log(e)
+                        toast.error("User name already exists, choose another one!, but in error")
+                    }
+
+                )
+        } else {
+            // e.preventDefault()
+            toast.error("Please fill required field!")
+        }
+
+    }
 
     return (
         <section className="vh-100" style={{ backgroundColor: "#eee" }}>
@@ -57,8 +121,11 @@ export default function Register() {
                                                         type="text"
                                                         // id="form3Example1c"
                                                         className="form-control"
-                                                        placeholder="Full name"
+                                                        placeholder="Full name *"
                                                         required
+                                                        name="fullName"
+                                                        onChange={handleChange}
+                                                        value={fullName}
                                                     />
                                                 </div>
                                             </div>
@@ -72,8 +139,11 @@ export default function Register() {
                                                         type="text"
                                                         // id="form3Example3c"
                                                         className="form-control"
-                                                        placeholder="User Name"
+                                                        placeholder="User Name *"
                                                         required
+                                                        name="userName"
+                                                        onChange={handleChange}
+                                                        value={userName}
                                                     />
                                                 </div>
                                             </div>
@@ -87,8 +157,11 @@ export default function Register() {
                                                         type="password"
                                                         // id="form3Example4c"
                                                         className="form-control"
-                                                        placeholder="Password"
+                                                        placeholder="Password *"
                                                         required
+                                                        name="password"
+                                                        onChange={handleChange}
+                                                        value={password}
                                                     />
                                                 </div>
                                             </div>
@@ -103,6 +176,9 @@ export default function Register() {
                                                         // id="form3Example4cd"
                                                         className="form-control"
                                                         placeholder="Email"
+                                                        name="email"
+                                                        onChange={handleChange}
+                                                        value={email}
                                                     />
                                                 </div>
                                             </div>
@@ -115,9 +191,12 @@ export default function Register() {
                                                     <input
                                                         type="tel"
                                                         className="form-control"
-                                                        placeholder="Phone"
+                                                        placeholder="Phone *"
                                                         pattern="0[0-9]{8,10}"
                                                         required
+                                                        name="phone"
+                                                        onChange={handleChange}
+                                                        value={phone}
                                                     />
                                                 </div>
                                             </div>
@@ -131,7 +210,10 @@ export default function Register() {
                                                         type="text"
                                                         className="form-control"
                                                         placeholder="Address"
+                                                        name="address"
                                                         required
+                                                        onChange={handleChange}
+                                                        value={address}
                                                     />
                                                 </div>
                                             </div>
@@ -154,6 +236,7 @@ export default function Register() {
                                                     data-mdb-ripple-init=""
                                                     className="btn btn-primary btn-lg gradient-custom-2"
                                                     style={{ width: "55%" }}
+                                                    onClick={handleSubmit}
                                                 >
                                                     Register
                                                 </button>
@@ -165,7 +248,7 @@ export default function Register() {
                                             // src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
                                             src={`${process.env.PUBLIC_URL}/assets/images/logos/logo5.jpg`}
                                             className="img-fluid"
-                                            alt="Sample image"
+                                            alt="logo"
                                         />
                                     </div>
                                 </div>

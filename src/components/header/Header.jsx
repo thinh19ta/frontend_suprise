@@ -92,7 +92,7 @@ export default function Header() {
                                     />
                                     <button className="btn btn-warning text-white">Search</button>
                                 </div>
-                            </div>                        
+                            </div>
 
                             {/* comment activeClassName="active", but it still work! */}
 
@@ -101,7 +101,7 @@ export default function Header() {
                                     <NavLink
                                         className="nav-link mx-2 text-uppercase"
                                         // activeClassName="active"
-                                        to={'/'}                                    
+                                        to={'/'}
                                     >
                                         Home
                                     </NavLink>

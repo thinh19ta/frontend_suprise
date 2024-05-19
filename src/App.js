@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './hooks/AuthContext';
+import { Toaster } from 'react-hot-toast';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 // import Products from './components/shop/products/Products';  
 // import LoginPage from './components/account/login/LoginPage';
 // import Profile from './components/account/profile/Profile';
-// import ProductDetail from './components/shop/productDetail/ProductDetail';
 import Carousel from './components/layouts/Carousel';
 import Home from './components/general/Home';
 import LoginPage from './components/account/login/LoginPage';
@@ -14,7 +14,7 @@ import Register from './components/account/register/Register';
 import Profile from './components/account/profile/Profile';
 import Cart from './components/shop/cart/Cart';
 import Shop from './components/shop/shop/Shop';
-import { Toaster } from 'react-hot-toast';
+import ProductDetail from './components/shop/productDetail/ProductDetail';
 
 function App() {
   return (
@@ -28,7 +28,8 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/cart' element={<Cart />} />
-            <Route path='/Shop' element={<Shop />} />
+            <Route path='/shop' element={<Shop />} />
+            <Route path='/product/:id' element={<ProductDetail />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
