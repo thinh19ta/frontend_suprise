@@ -11,11 +11,14 @@ class CartService {
     }
 
     addCart(cartRequest) {
-        return axios.post(url)
+        return axios.post(url, cartRequest)
     }
 
     removeProduct(cartRequest) {
-        return axios.delete(url)
+        const config = {
+            data: cartRequest
+        }
+        return axios.delete(url, config)
     }
 }
 

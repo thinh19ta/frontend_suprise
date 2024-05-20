@@ -4,12 +4,15 @@ import { useState } from "react"
 import ProductService from "../../../services/ProductService"
 import CurrencyFormat from 'react-currency-format'
 import { useNavigate } from 'react-router-dom'
-
+import CartService from "../../../services/CartService"
+import useAuth from '../../../hooks/useAuth'
+import toast from 'react-hot-toast'
 
 export default function Products() {
 
-    const navigate  = useNavigate()
+    const navigate = useNavigate()
     const [products, setProducts] = useState([])
+    const [, accountId] = useAuth()
 
     useEffect(() => {
         // if (categoryId) {
@@ -37,10 +40,25 @@ export default function Products() {
         // }, [categoryId])
     })
 
-    const handleProductDetail = (productId) => {    
+    const handleProductDetail = (productId) => {
         navigate(`/product/${productId}`)
     }
 
+    const handleAddCart = (productId) => {
+        const cartRequest = {
+            accountId,
+            productId
+        }
+        CartService.addCart(cartRequest).then(
+            toast.success("Add cart successfully!")
+        ).catch(
+            e => console.log(e)
+        )
+    }
+
+    const handleBuy = (productId) => {
+
+    }
 
     return (
 
@@ -105,16 +123,20 @@ export default function Products() {
                                             alt=""
                                         />
                                         <ul className="d-flex align-items-center justify-content-center list-unstyled icons">
-                                            <li className="icon">
-                                                <span className="fas fa-expand-arrows-alt"
-                                                    onClick={() => handleProductDetail(product.id)}
-                                                />
+                                            <li className="icon"
+                                                onClick={() => handleProductDetail(product.id)}
+                                            >
+                                                <span className="fas fa-expand-arrows-alt" />
                                             </li>
-                                            <li className="icon mx-3">
-                                                <span className="far fa-heart" />
+                                            <li className="icon mx-3"
+                                                onClick={() => handleBuy(product.id)}
+                                            >
+                                                <span className="far  fa-credit-card" />
                                             </li>
-                                            <li className="icon">
-                                                <span className="fas fa-shopping-bag" />
+                                            <li className="icon"
+                                                onClick={() => handleAddCart(product.id)}
+                                            >
+                                                <span className="fas fa-cart-shopping" />
                                             </li>
                                         </ul>
                                     </div>

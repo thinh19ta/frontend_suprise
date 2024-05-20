@@ -5,12 +5,31 @@ import { useEffect, useState } from 'react'
 import CartService from "../../../services/CartService"
 import useAuth from '../../../hooks/useAuth'
 import CurrencyFormat from 'react-currency-format'
+import toast from 'react-hot-toast'
+import AccountService from "../../../services/AccountService"
 
 export default function Cart() {
 
     const [, accountId] = useAuth()
+    const [account, setAccount] = useState({})
     const [products, setProducts] = useState([])
+    const totalPrice = Array.isArray(products) ? products.reduce((total, product) => total + product.price, 0) : 0;
+    const [order, setOrder] = useState()
 
+    useEffect(
+        () => {
+            if (accountId) {
+                AccountService.getAccountById(accountId)
+                    .then(res => {
+                        console.log(res.data)
+                        setAccount(res.data)
+                    })
+                    .catch(
+                        e => console.log(e)
+                    )
+            }
+        }
+        , [accountId])
 
     useEffect(
         () => {
@@ -22,6 +41,20 @@ export default function Cart() {
             )
         }, [accountId])
     //handle this
+
+    const handleRemoveFromCart = (e, productId) => {
+        e.preventDefault()
+        const cartRequest = {
+            accountId,
+            productId
+        }
+        CartService.removeProduct(cartRequest).then(
+            res => {
+                setProducts(prevProducts => prevProducts.filter(product => product.id !== productId))
+                toast.success("Remove cart successfully!")
+            }
+        ).catch(e => console.log(e))
+    }
 
 
     return (
@@ -81,7 +114,7 @@ export default function Cart() {
                                                                     data-mdb-button-init=""
                                                                     data-mdb-ripple-init=""
                                                                     className="btn btn-link px-2"
-                                                                    onlick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                                                // onClick={}
                                                                 >
                                                                     <i className="fas fa-minus" />
                                                                 </button>
@@ -97,7 +130,7 @@ export default function Cart() {
                                                                     data-mdb-button-init=""
                                                                     data-mdb-ripple-init=""
                                                                     className="btn btn-link px-2"
-                                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                                                // onClick={}
                                                                 >
                                                                     <i className="fas fa-plus" />
                                                                 </button>
@@ -106,9 +139,10 @@ export default function Cart() {
                                                                 <h6 className="mb-0"><CurrencyFormat value={product.price} displayType={'text'} thousandSeparator={true} suffix={' vnđ'} /></h6>
                                                             </div>
                                                             <div className="col-md-1 col-lg-1 col-xl-1 text-end">
-                                                                <a href="#!" className="text-muted">
-                                                                    <i className="fas fa-times" />
-                                                                </a>
+                                                                <i className="fas fa-times"
+                                                                    onClick={(e) => handleRemoveFromCart(e, product.id)}
+
+                                                                />
                                                             </div>
                                                         </div>
                                                         <hr className="my-4" />
@@ -122,36 +156,35 @@ export default function Cart() {
                                         <div className="p-5">
                                             <h3 className="fw-bold mb-5 mt-2 pt-1">Summary</h3>
                                             <hr className="my-4" />
-                                            {/* <div className="d-flex justify-content-between mb-4">
-                                                <h5 className="text-uppercase">items 3</h5>
-                                                <h5>€ 132.00</h5>
-                                            </div>
-                                            <h5 className="text-uppercase mb-3">Shipping</h5>
+                                            <h5 className="text-uppercase mb-3">Payment method</h5>
                                             <div className="mb-4 pb-2">
                                                 <select data-mdb-select-init="">
-                                                    <option value={1}>Standard-Delivery- €5.00</option>
-                                                    <option value={2}>Two</option>
-                                                    <option value={3}>Three</option>
-                                                    <option value={4}>Four</option>
+                                                    <option value={1}>C.O.D</option>
+                                                    <option value={2}>Banking (Vietcombank)</option>
                                                 </select>
                                             </div>
-                                            <h5 className="text-uppercase mb-3">Give code</h5>
-                                            <div className="mb-5">
-                                                <div data-mdb-input-init="" className="form-outline">
-                                                    <input
-                                                        type="text"
-                                                        id="form3Examplea2"
-                                                        className="form-control form-control-lg"
-                                                    />
-                                                    <label className="form-label" htmlFor="form3Examplea2">
-                                                        Enter your code
-                                                    </label>
-                                                </div>
-                                            </div> */}
-                                            {/* <hr className="my-4" /> */}
+                                            <h5 className="text-uppercase mb-3">Shipping adddress</h5>
+                                            {
+                                                account.address ? <h3>{account.address}</h3>
+                                                    :
+                                                    <div className="mb-5">
+                                                        <div data-mdb-input-init="" className="form-outline">
+                                                            <input
+                                                                type="text"
+                                                                id="form3Examplea2"
+                                                                className="form-control form-control-lg"
+                                                            />
+                                                            <label className="form-label" htmlFor="form3Examplea2">
+                                                                Enter your code
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                            }
+
+                                            <hr className="my-4" />
                                             <div className="d-flex justify-content-between mb-5">
                                                 <h5 className="text-uppercase">Total price</h5>
-                                                <h5>€ 137.00</h5>
+                                                <h5><CurrencyFormat value={totalPrice} displayType={'text'} thousandSeparator={true} suffix={' vnđ'} /></h5>
                                             </div>
                                             <button
                                                 type="button"

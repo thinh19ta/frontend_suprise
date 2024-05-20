@@ -8,8 +8,8 @@ import AccountService from "../../../services/AccountService"
 export default function Profile() {
 
     const navigate = useNavigate()
-    const [account, setAccount] = useState({})
     const [, accountId] = useAuth()
+    const [account, setAccount] = useState({})
 
     useEffect(
         () => {
