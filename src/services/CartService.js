@@ -20,6 +20,10 @@ class CartService {
         }
         return axios.delete(url, config)
     }
+
+    removeCart(accountId){
+        return axios.delete(`${url}/${accountId}`)
+    }
 }
 
 const CartServiceInstance = new CartService();
