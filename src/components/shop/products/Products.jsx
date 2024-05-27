@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { useState } from "react"
 import ProductService from "../../../services/ProductService"
 import CurrencyFormat from 'react-currency-format'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import CartService from "../../../services/CartService"
 import useAuth from '../../../hooks/useAuth'
 import toast from 'react-hot-toast'
@@ -45,9 +45,15 @@ export default function Products() {
     }
 
     const handleAddCart = (productId) => {
+        if (accountId == null) {
+            navigate('/login')
+            toast.error("Please login!")
+            return
+        }
         const cartRequest = {
             accountId,
-            productId
+            productId,
+            quantity: 1
         }
         CartService.addCart(cartRequest).then(
             toast.success("Add cart successfully!")
@@ -57,7 +63,7 @@ export default function Products() {
     }
 
     const handleBuy = (productId) => {
-
+        
     }
 
     return (
@@ -69,9 +75,9 @@ export default function Products() {
                 <nav className="navbar navbar-expand-md navbar-light bg-white">
                     <div className="container-fluid p-0">
                         {" "}
-                        <a className="navbar-brand text-uppercase fw-800" href="#">
+                        <Link className="navbar-brand text-uppercase fw-800">
                             <span className="border-red pe-2">New</span>Product
-                        </a>{" "}
+                        </Link>{" "}
                         <button
                             className="navbar-toggler"
                             type="button"
@@ -87,24 +93,24 @@ export default function Products() {
                         <div className="collapse navbar-collapse" id="myNav">
                             <div className="navbar-nav ms-auto">
                                 {" "}
-                                <a className="nav-link" aria-current="page" href="#">
+                                <Link className="nav-link" aria-current="page">
                                     All
-                                </a>{" "}
-                                <a className="nav-link" href="#">
+                                </Link>{" "}
+                                <Link className="nav-link">
                                     Women's
-                                </a>{" "}
-                                <a className="nav-link" href="#">
+                                </Link>{" "}
+                                <Link className="nav-link">
                                     Men's
-                                </a>{" "}
-                                <a className="nav-link" href="#">
+                                </Link>{" "}
+                                <Link className="nav-link">
                                     Kid's
-                                </a>{" "}
-                                <a className="nav-link" href="#">
+                                </Link>{" "}
+                                <Link className="nav-link">
                                     Accessories
-                                </a>{" "}
-                                <a className="nav-link" href="#">
+                                </Link>{" "}
+                                <Link className="nav-link">
                                     Cosmetics
-                                </a>{" "}
+                                </Link>{" "}
                             </div>
                         </div>
                     </div>

@@ -6,9 +6,15 @@ const home_url = AppConstants.HOME_PATH
 const url = `${home_url}/order`
 
 class OrderService {
-    addOrder(orderData) {
-        return axios.post(url, orderData) 
+
+    getAllOrder(accountId) {
+        return axios.get(`${url}/${accountId}`)
     }
+
+    addOrder(orderData) {
+        return axios.post(url, orderData)
+    }
+
 }
 
 const OrderServiceInstance = new OrderService();

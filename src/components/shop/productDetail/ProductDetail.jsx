@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductService from "../../../services/ProductService"
 import CurrencyFormat from "react-currency-format"
@@ -10,6 +10,7 @@ import toast from 'react-hot-toast'
 export default function ProductDetail() {
 
     const { id } = useParams()
+    const navigate = useNavigate()
     const [product, setProduct] = useState('')
     const [, accountId] = useAuth()
 
@@ -23,9 +24,15 @@ export default function ProductDetail() {
 
 
     const handleAddCart = (productId) => {
+        if(accountId == null){
+            navigate('/login')
+            toast.error("Please login!")
+            return
+        }
         const cartRequest = {
             accountId,
-            productId
+            productId,
+            quantity: 1
         }
         CartService.addCart(cartRequest).then(
             toast.success("Add cart successfully!")
@@ -95,7 +102,7 @@ export default function ProductDetail() {
                                     onClick={() => handleAddCart(product.id)}
                                 >
                                     Add to cart{" "}
-                                    <i class="fa-solid fa-cart-shopping fa-bounce"></i>
+                                    <i className="fa-solid fa-cart-shopping fa-bounce"></i>
                                 </button>
                             </div>
                         </div>

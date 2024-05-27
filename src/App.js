@@ -16,6 +16,7 @@ import Cart from './components/shop/cart/Cart';
 import Shop from './components/shop/shop/Shop';
 import ProductDetail from './components/shop/productDetail/ProductDetail';
 import Payment from './components/shop/payment/Payment';
+import Order from './components/shop/order/Order';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path='/shop' element={<Shop />} />
             <Route path='/product/:id' element={<ProductDetail />} />
             <Route path='/payment' element={<Payment />} />
+            <Route path='/order' element={<Order />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

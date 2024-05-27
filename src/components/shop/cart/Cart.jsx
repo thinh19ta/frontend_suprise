@@ -15,9 +15,11 @@ export default function Cart() {
     const [account, setAccount] = useState({});
     const [products, setProducts] = useState([]);
     const totalPrice = products.reduce((total, product) => total + (product.price * product.quantity), 0);
-    const [selectedShippingMethod, setSelectedShippingMethod] = useState(1); // Default shipping method (C.O.D)
+    const [paymentMethod, setPaymentMethod] = useState(1); // Default shipping method (C.O.D)
     const [showModal, setShowModal] = useState(false);
 
+
+    // Load account -> Done
     useEffect(() => {
         if (accountId) {
             AccountService.getAccountById(accountId)
@@ -29,13 +31,13 @@ export default function Cart() {
         }
     }, [accountId]);
 
+    // Load cart cua account do -> Done
     useEffect(() => {
         CartService.getCartByAccountId(accountId).then(
             res => {
                 console.log("Response data:", res.data);
                 if (Array.isArray(res.data)) {
-                    const productsWithQuantity = res.data.map(product => ({ ...product, quantity: 1 }));
-                    setProducts(productsWithQuantity);
+                    setProducts(res.data)
                 } else {
                     console.error("Expected res.data to be an array but got:", res.data);
                 }
@@ -45,67 +47,87 @@ export default function Cart() {
         });
     }, [accountId]);
 
-    const handleRemoveFromCart = (e, productId) => {
+    // Remove a product from cart -> Done
+    const handleRemoveFromCart = (e, id) => {
         e.preventDefault();
         const cartRequest = {
             accountId,
-            productId
+            id
         };
         CartService.removeProduct(cartRequest).then(
             res => {
-                setProducts(prevProducts => prevProducts.filter(product => product.id !== productId));
+                setProducts(prevProducts => prevProducts.filter(product => product.id !== id));
                 toast.success("Removed from cart successfully!");
             }
         ).catch(e => console.log(e));
     };
 
+    // Done
     const handleDecrementQuantity = (productId) => {
         setProducts(prevProducts => {
-            return prevProducts.map(product => {
+            const updatedProducts = prevProducts.map(product => {
                 if (product.id === productId && product.quantity > 1) {
-                    return { ...product, quantity: product.quantity - 1 };
+                    const newQuantity = product.quantity - 1;
+                    updateProductQuantity(productId, newQuantity);
+                    return { ...product, quantity: newQuantity };
                 }
                 return product;
             });
+            return updatedProducts;
         });
     };
 
+    // Done
     const handleIncrementQuantity = (productId) => {
         setProducts(prevProducts => {
-            return prevProducts.map(product => {
+            const updatedProducts = prevProducts.map(product => {
                 if (product.id === productId) {
-                    return { ...product, quantity: product.quantity + 1 };
+                    const newQuantity = product.quantity + 1;
+                    updateProductQuantity(productId, newQuantity);
+                    return { ...product, quantity: newQuantity };
                 }
                 return product;
             });
+            return updatedProducts;
         });
     };
 
+    // Done
+    const updateProductQuantity = (productId, newQuantity) => {
+        const cartProductRequest = {
+            accountId,
+            id: productId,
+            quantity: newQuantity
+        };
+        CartService.updateProductQuantity(cartProductRequest)
+            .then(res => {
+                console.log(`Updated product ${productId} quantity to ${newQuantity}`);
+            })
+            .catch(e => {
+                console.log(e);
+                toast.error("Error updating product quantity.");
+            });
+    };
+
+
     const handleCheckout = () => {
+
+        if (products.length === 0) {
+            toast.error("Nothing to check out, please pick something!")
+            return
+        }
+
         const orderData = {
             accountId,
-            fullName: account.fullName,
-            email: account.email,
-            phone: account.phone,
-            shippingAddress: account.address,
-            shippingMethod: selectedShippingMethod === 1 ? "C.O.D" : "Banking",
-            products: products.map(product => ({ id: product.id, productName: product.name, quantity: product.quantity })),
+            paymentMethod,
+            paymentStatus: "Not yet",
+            status: "Pending",
             totalPrice
         };
 
         OrderService.addOrder(orderData)
             .then(res => {
-                console.log(res);
-                CartService.removeCart(accountId)
-                    .then(res => {
-                        console.log(res);
-                        toast.success("Checkout successful!");
-                        window.location.reload();
-                    })
-                    .catch(e => {
-                        console.log(e);
-                        toast.error("Error removing cart.");
-                    });
+                console.log(res);                
             })
             .catch(e => {
                 console.log(e);
@@ -123,6 +145,9 @@ export default function Cart() {
     return (
         <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
             <div className="container py-5 h-100">
+
+
+                {/* Breadcrumb */}
                 <div className="row">
                     <div className="col">
                         <nav aria-label="breadcrumb" className="bg-body-tertiary rounded-3 p-3 mb-4">
@@ -137,6 +162,8 @@ export default function Cart() {
                         </nav>
                     </div>
                 </div>
+                {/* Breadcrumb */}
+
 
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-12">
@@ -175,6 +202,7 @@ export default function Cart() {
                                                                     type="number"
                                                                     className="form-control form-control-sm"
                                                                     readOnly
+                                                                    style={{ width: "55px" }}
                                                                 />
                                                                 <button
                                                                     className="btn btn-link px-2"
@@ -202,7 +230,7 @@ export default function Cart() {
                                             <hr className="my-4" />
                                             <h5 className="text-uppercase mb-3">Payment method</h5>
                                             <div className="mb-4 pb-2">
-                                                <select onChange={(e) => setSelectedShippingMethod(parseInt(e.target.value))}>
+                                                <select onChange={(e) => setPaymentMethod(parseInt(e.target.value))}>
                                                     <option value={1}>C.O.D</option>
                                                     <option value={2}>Banking (Vietcombank)</option>
                                                 </select>

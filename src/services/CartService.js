@@ -10,20 +10,24 @@ class CartService {
         return axios.get(`${url}/${accountId}`)
     }
 
-    addCart(cartRequest) {
-        return axios.post(url, cartRequest)
+    addCart(cartProductRequest) {
+        return axios.post(url, cartProductRequest)
     }
 
-    removeProduct(cartRequest) {
+    removeProduct(cartProductRequest) {
         const config = {
-            data: cartRequest
+            data: cartProductRequest
         }
         return axios.delete(url, config)
     }
 
-    removeCart(accountId){
-        return axios.delete(`${url}/${accountId}`)
+    updateProductQuantity(cartProductRequest) {
+        return axios.put(url, cartProductRequest);
     }
+
+    // removeCart(accountId){
+    //     return axios.delete(`${url}/${accountId}`)
+    // }
 }
 
 const CartServiceInstance = new CartService();
