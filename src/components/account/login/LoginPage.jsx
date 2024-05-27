@@ -1,12 +1,13 @@
 import { useContext, useState } from 'react'
 import './index.css'
 import { AuthContext } from '../../../hooks/AuthContext'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import AccountService from "../../../services/AccountService"
 import toast from 'react-hot-toast'
+import Header from '../../header/Header'
 
 
-export default function () {
+export default function LoginPage() {
     const context = useContext(AuthContext)
     const navigate = useNavigate()
     const [userName, setUserName] = useState('')
@@ -46,17 +47,18 @@ export default function () {
     }
 
     return (
-        <section className="h-100 gradient-form" style={{ backgroundColor: "#eee" }}>
+        <section className="h-100 gradient-form">
+            <Header />
             <div className="container py-5 h-100">
 
-                {/* Breadcrumb o day, chu y xem co nen sai ko */}
+                {/* Breadcrumb o day, chu y xem co nen sai ko
                 <div className="row">
                     <div className="col">
                         <nav
                             aria-label="breadcrumb"
                             className="bg-body-tertiary rounded-3 p-3 mb-4"
                         >
-                            {/* Breadcrumb o day, chu y xem co nen sai ko */}
+                            Breadcrumb o day, chu y xem co nen sai ko
                             <ol className="breadcrumb mb-0">
                                 <li className="breadcrumb-item">
                                     <Link to={'/'}>Home</Link>
@@ -70,7 +72,7 @@ export default function () {
                             </ol>
                         </nav>
                     </div>
-                </div>
+                </div> */}
 
 
                 <div className="row d-flex justify-content-center align-items-center h-100">

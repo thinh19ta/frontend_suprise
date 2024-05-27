@@ -1,13 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
 import Header from "../../header/Header";
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import AccountService from "../../../services/AccountService"
+import Order from "../../shop/order/Order";
 
 
 export default function Profile() {
 
-    const navigate = useNavigate()
     const [, accountId] = useAuth()
     const [account, setAccount] = useState({})
 
@@ -26,21 +25,19 @@ export default function Profile() {
         }
         , [accountId])
 
-    const handleHomeBack = (e) => {
-        e.preventDefault()
-        navigate('/')
-    }
+
     return (
-        <section style={{ backgroundColor: "#eee" }}>
+        <section style={{ backgroundColor: "#eee", height: "100vh" }}>
+            <Header />
             <div className="container py-5">
-                <div className="row">
+                {/* <div className="row">
                     <div className="col">
+                        Breadcrumb o day, chu y xem co nen sai ko
                         <nav
                             aria-label="breadcrumb"
                             className="bg-body-tertiary rounded-3 p-3 mb-4"
                         >
 
-                            {/* Breadcrumb o day, chu y xem co nen sai ko */}
                             <ol className="breadcrumb mb-0">
                                 <li className="breadcrumb-item">
                                     <Link to={'/'}>Home</Link>
@@ -51,7 +48,7 @@ export default function Profile() {
                             </ol>
                         </nav>
                     </div>
-                </div>
+                </div> */}
                 <div className="row">
                     <div className="col-lg-4">
                         <div className="card mb-4">
@@ -85,7 +82,7 @@ export default function Profile() {
                                 </div>
                             </div>
                         </div>
-                        <div className="card mb-4 mb-lg-0">
+                        {/* <div className="card mb-4 mb-lg-0">
                             <div className="card-body p-0">
                                 <ul className="list-group list-group-flush rounded-3">
                                     <li className="list-group-item d-flex justify-content-between align-items-center p-3">
@@ -119,7 +116,7 @@ export default function Profile() {
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="col-lg-8">
                         <div className="card mb-4">
@@ -161,7 +158,7 @@ export default function Profile() {
                                 </div>
                             </div>
                         </div>
-                        <div className="row">
+                        {/* <div className="row">
                             <div className="col-md-6">
                                 <div className="card mb-4 mb-md-0">
                                     <div className="card-body">
@@ -316,7 +313,8 @@ export default function Profile() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
+                        < Order />
                     </div>
                 </div>
             </div>

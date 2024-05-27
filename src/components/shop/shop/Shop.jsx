@@ -1,34 +1,20 @@
-import { Link } from "react-router-dom";
 import Header from "../../header/Header";
 import Products from "../products/Products";
-
+// import Carousel from "../../layouts/Carousel";
+import './index.css'
 export default function Shop() {
     return (
         <>
             <Header />
-            {/* Add breadcrumb o day */}
-            <div className="row">
-                <div className="col">
-                    <nav
-                        aria-label="breadcrumb"
-                        className="bg-body-tertiary rounded-3 p-3 mb-4"
-                    >
-
-                        {/* Breadcrumb o day, chu y xem co nen sai ko */}
-                        <ol className="breadcrumb mb-0">
-                            <li className="breadcrumb-item">
-                                <Link to={'/'}>Home</Link>
-                            </li>
-                            <li className="breadcrumb-item active" aria-current="page">
-                                Shop
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
+            {/* <Carousel /> */}
+            <div className="image-container">
+                <img
+                    src={`${process.env.PUBLIC_URL}/assets/images/qr/robothelp3.jpg`}
+                    alt="Robot Help"
+                    className="full-screen-image "
+                />
             </div>
-
-            {/* Add breadcrumb o day */}
             <Products />
         </>
-    )
+    );
 }

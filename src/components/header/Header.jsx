@@ -52,9 +52,9 @@ export default function Header() {
                 </div>
                 <nav className="navbar navbar-expand-lg bg-white sticky-top navbar-light p-3 shadow-sm">
                     <div className="container">
-                        <a className="navbar-brand" href="/">
+                        <Link className="navbar-brand" to={'/'}>
                             <i className="fa-solid fa-gifts"></i> <strong>Surprise Box</strong>
-                        </a>
+                        </Link>
                         <button
                             className="navbar-toggler"
                             type="button"

@@ -7,7 +7,6 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 // import Products from './components/shop/products/Products';  
 // import LoginPage from './components/account/login/LoginPage';
 // import Profile from './components/account/profile/Profile';
-import Carousel from './components/layouts/Carousel';
 import Home from './components/general/Home';
 import LoginPage from './components/account/login/LoginPage';
 import Register from './components/account/register/Register';
@@ -17,6 +16,7 @@ import Shop from './components/shop/shop/Shop';
 import ProductDetail from './components/shop/productDetail/ProductDetail';
 import Payment from './components/shop/payment/Payment';
 import Order from './components/shop/order/Order';
+import BlogPage from './components/blogs/BlogPage';
 
 function App() {
   return (
@@ -34,6 +34,7 @@ function App() {
             <Route path='/product/:id' element={<ProductDetail />} />
             <Route path='/payment' element={<Payment />} />
             <Route path='/order' element={<Order />} />
+            <Route path='/blogs' element={<BlogPage />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

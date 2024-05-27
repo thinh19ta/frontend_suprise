@@ -1,0 +1,12 @@
+.image-container {
+    width: 100%;
+    height: 75vh; /* 50% of the viewport height */
+    overflow: hidden; /* Ensures the image does not overflow the container */
+}
+
+.full-screen-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+    object-position: top;
+}

@@ -1,61 +1,120 @@
-import { useEffect, useState } from "react"
-import useAuth from "../../../hooks/useAuth"
+import { useEffect, useState } from "react";
+import { Modal, Button } from "react-bootstrap";
+import useAuth from "../../../hooks/useAuth";
 import OrderService from "../../../services/OrderService";
-export default function Order() {
+import CurrencyFormat from "react-currency-format";
 
-    const [orders, setOrders] = useState([])
-    const [, accountId] = useAuth()
+export default function Order() {
+    const [orders, setOrders] = useState([]);
+    const [, accountId] = useAuth();
+    const [selectedOrder, setSelectedOrder] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         if (accountId) {
             OrderService.getAllOrder(accountId)
-                .then(
-                    res => {
-                        console.log(res.data)
-                        setOrders(res.data)
-                    }
-                )
-                .catch(
-                    e => console.log(e)
-                )
+                .then((res) => {
+                    console.log(res.data);
+                    setOrders(res.data);
+                })
+                .catch((e) => console.log(e));
         }
-    }, [accountId])
+    }, [accountId]);
 
+    const handleOrderDetailsClick = (order) => {
+        setSelectedOrder(order);
+        setShowModal(true);
+    };
+
+    // Function to format date as day/month/year
+    const formatDate = (dateString) => {
+        const options = { day: "2-digit", month: "2-digit", year: "numeric" };
+        return new Date(dateString).toLocaleDateString("en-GB", options);
+    };
 
     return (
         <div>
-            {
-                orders.map(
-                    order => (
-                        <div key={order.id}>
-                            ------------------------------------
-                            <h1>Your order id: {order.id}</h1>
-                            <h1>Your paymentMethod id: {order.paymentMethod}</h1>
-                            <div>
-                            <h1>List of order product</h1>
-                                {
-                                    order.orderProductResponses.map(
-                                        product => (
-                                            <div key={product.id}>
-                                                <p>Product ID: {product.productId}</p>
-                                                <p>Name: {product.name}</p>
-                                                <p>Price: {product.price}</p>
-                                                <p>Description: {product.description}</p>
-                                                <p>Image URL: {product.imageURL}</p>
-                                                <p>Quantity: {product.quantity}</p>
-                                            </div>
-                                        )
-                                    )
-                                }      
-                       
-                            </div>
-                            <h1>Your paymentStatus id: {order.paymentStatus}</h1>
-                            <h1>Your order status: {order.status}</h1>
-                        </div>
-                    )
-                )
-            }
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Order Date</th>
+                        <th scope="col">Payment status</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {orders.map((order, index) => (
+                        <tr key={index}>
+                            <th scope="row">{index + 1}</th>
+                            <td>
+                                <CurrencyFormat
+                                    value={order.totalPrice}
+                                    displayType={'text'}
+                                    thousandSeparator={true}
+                                    suffix={' vnđ'}
+                                />
+                            </td>
+                            <td>{formatDate(order.orderDate)}</td> {/* Format date here */}
+                            <td>{order.paymentStatus}</td>
 
+                            <td>{order.status}</td>
+
+                            <td>
+                                <button
+                                    className="btn btn-primary"
+                                    onClick={() => handleOrderDetailsClick(order)}
+                                >
+                                    Details
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <Modal show={showModal} onHide={() => setShowModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Order Details</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {selectedOrder &&
+                        selectedOrder.orderProductResponses.map((product) => (
+                            <div key={product.id}>
+                                <div className="row mb-4 align-items-center">
+                                    <div className="col-4 col-md-2">
+                                        <img
+                                             src={`${process.env.PUBLIC_URL}/assets/images/products/${product.imageURL}`}
+                                            className="img-fluid rounded-3"
+                                            alt="Product"
+                                        />
+                                    </div>
+                                    <div className="col-8 col-md-10">
+                                        <div className="d-flex justify-content-between align-items-center">
+                                            <h6 className="col-6 text-black mb-0">{product.name}</h6>
+                                            <p className="col-1 mb-0">{product.quantity}</p>
+                                            <h6 className="col-3 mb-0">
+                                                <CurrencyFormat
+                                                    value={product.price}
+                                                    displayType={'text'}
+                                                    thousandSeparator={true}
+                                                    suffix={' vnđ'}
+                                                />
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr className="my-4" />
+                            </div>
+                        ))}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowModal(false)}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
-    )
+    );
 }

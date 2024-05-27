@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './index.css';
 import { useEffect, useState } from 'react';
 import CartService from "../../../services/CartService";
@@ -8,36 +8,35 @@ import CurrencyFormat from 'react-currency-format';
 import toast from 'react-hot-toast';
 import AccountService from "../../../services/AccountService";
 import { Modal, Button } from 'react-bootstrap';
+import Header from '../../header/Header';
 
 export default function Cart() {
-
     const [, accountId] = useAuth();
     const [account, setAccount] = useState({});
     const [products, setProducts] = useState([]);
     const totalPrice = products.reduce((total, product) => total + (product.price * product.quantity), 0);
-    const [paymentMethod, setPaymentMethod] = useState(1); // Default shipping method (C.O.D)
+    const [paymentMethod, setPaymentMethod] = useState(1); // Default payment method (C.O.D)
     const [showModal, setShowModal] = useState(false);
+    const [showBankingModal, setShowBankingModal] = useState(false);
+    const navigate = useNavigate();
 
-
-    // Load account -> Done
+    // Load account
     useEffect(() => {
         if (accountId) {
             AccountService.getAccountById(accountId)
                 .then(res => {
-                    console.log(res.data);
                     setAccount(res.data);
                 })
                 .catch(e => console.log(e));
         }
     }, [accountId]);
 
-    // Load cart cua account do -> Done
+    // Load cart for the account
     useEffect(() => {
         CartService.getCartByAccountId(accountId).then(
             res => {
-                console.log("Response data:", res.data);
                 if (Array.isArray(res.data)) {
-                    setProducts(res.data)
+                    setProducts(res.data);
                 } else {
                     console.error("Expected res.data to be an array but got:", res.data);
                 }
@@ -47,13 +46,10 @@ export default function Cart() {
         });
     }, [accountId]);
 
-    // Remove a product from cart -> Done
+    // Remove a product from cart
     const handleRemoveFromCart = (e, id) => {
         e.preventDefault();
-        const cartRequest = {
-            accountId,
-            id
-        };
+        const cartRequest = { accountId, id };
         CartService.removeProduct(cartRequest).then(
             res => {
                 setProducts(prevProducts => prevProducts.filter(product => product.id !== id));
@@ -62,7 +58,6 @@ export default function Cart() {
         ).catch(e => console.log(e));
     };
 
-    // Done
     const handleDecrementQuantity = (productId) => {
         setProducts(prevProducts => {
             const updatedProducts = prevProducts.map(product => {
@@ -77,7 +72,6 @@ export default function Cart() {
         });
     };
 
-    // Done
     const handleIncrementQuantity = (productId) => {
         setProducts(prevProducts => {
             const updatedProducts = prevProducts.map(product => {
@@ -92,13 +86,8 @@ export default function Cart() {
         });
     };
 
-    // Done
     const updateProductQuantity = (productId, newQuantity) => {
-        const cartProductRequest = {
-            accountId,
-            id: productId,
-            quantity: newQuantity
-        };
+        const cartProductRequest = { accountId, id: productId, quantity: newQuantity };
         CartService.updateProductQuantity(cartProductRequest)
             .then(res => {
                 console.log(`Updated product ${productId} quantity to ${newQuantity}`);
@@ -109,46 +98,71 @@ export default function Cart() {
             });
     };
 
-
     const handleCheckout = () => {
-
         if (products.length === 0) {
-            toast.error("Nothing to check out, please pick something!")
-            return
+            toast.error("Nothing to check out, please pick something!");
+            setShowModal(false); // Close the modal if there are no products
+            return;
         }
 
+        if (paymentMethod === 1) {
+            // C.O.D payment method
+            const orderData = {
+                accountId,
+                paymentMethod: 1,
+                paymentStatus: "Not yet",
+                status: "Pending",
+                totalPrice
+            };
+
+            OrderService.addOrder(orderData)
+                .then(res => {
+                    console.log(res);
+                    navigate('/order');
+                })
+                .catch(e => {
+                    console.log(e);
+                    toast.error("Error placing order.");
+                });
+        } else if (paymentMethod === 2) {
+            // Banking payment method
+            setShowModal(false); // Close the modal if there are no products
+            setShowBankingModal(true);
+        }
+    };
+
+    const handleConfirmBankingCheckout = () => {
+        // Payment done
         const orderData = {
             accountId,
-            paymentMethod,
-            paymentStatus: "Not yet",
+            paymentMethod: 2,
+            paymentStatus: "Done",
             status: "Pending",
             totalPrice
         };
 
         OrderService.addOrder(orderData)
             .then(res => {
-                console.log(res);                
+                console.log(res);
+                navigate('/order');
             })
             .catch(e => {
                 console.log(e);
                 toast.error("Error placing order.");
             });
+
+        setShowBankingModal(false);
     };
 
     const handleShowModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
-    const handleConfirmCheckout = () => {
-        handleCheckout();
-        handleCloseModal();
-    };
 
     return (
         <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
+            <Header />
             <div className="container py-5 h-100">
-
-
                 {/* Breadcrumb */}
-                <div className="row">
+                {/* <div className="row">
                     <div className="col">
                         <nav aria-label="breadcrumb" className="bg-body-tertiary rounded-3 p-3 mb-4">
                             <ol className="breadcrumb mb-0">
@@ -161,9 +175,8 @@ export default function Cart() {
                             </ol>
                         </nav>
                     </div>
-                </div>
+                </div> */}
                 {/* Breadcrumb */}
-
 
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-12">
@@ -284,11 +297,40 @@ export default function Cart() {
                     <Button variant="secondary" onClick={handleCloseModal}>
                         Cancel
                     </Button>
-                    <Button variant="primary" onClick={handleConfirmCheckout}>
+                    <Button variant="primary" onClick={handleCheckout}>
                         Confirm
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            {/* Banking Payment Modal */}
+            <Modal show={showBankingModal} onHide={() => setShowBankingModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Banking Payment</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <h5>Total price: <CurrencyFormat value={totalPrice} displayType={'text'} thousandSeparator={true} suffix={' vnđ'} /></h5>
+                    {/* Placeholder for QR code image */}
+                    <div className="d-flex justify-content-center">
+                        <img
+                            src={`${process.env.PUBLIC_URL}/assets/images/qr/qr.jpg`}
+                            alt="Banking Details"
+                            width={"72%"}
+                            className="img-fluid"
+                        />
+                    </div>
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowBankingModal(false)}>
+                        Pay Later
+                    </Button>
+                    <Button variant="primary" onClick={handleConfirmBankingCheckout}>
+                        Done
                     </Button>
                 </Modal.Footer>
             </Modal>
         </section>
     );
 }
+

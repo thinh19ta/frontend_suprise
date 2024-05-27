@@ -38,21 +38,30 @@ export default function Carousel() {
             </div>
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                    <img src="https://wallpapers.com/images/hd/1920-x-1080-hd-1qq8r4pnn8cmcew4.jpg" className="d-block w-100" alt="..." style={imageStyle} />
+                    <img
+                        src={`${process.env.PUBLIC_URL}/assets/images/carousels/carousel3.jpg`}
+                        className="d-block w-100" alt="..."
+                        style={imageStyle} />
                     <div className="carousel-caption d-none d-md-block">
                         <h5>Surprise Box</h5>
                         {/* <p>Some representative placeholder content for the first slide.</p> */}
                     </div>
                 </div>
                 <div className="carousel-item">
-                    <img src="https://i.pinimg.com/originals/9c/7b/e4/9c7be43979a736a8695361a544630b97.jpg" className="d-block w-100" alt="..." style={imageStyle} />
+                    <img
+                        src={`${process.env.PUBLIC_URL}/assets/images/carousels/carousel1.jpg`}
+                        className="d-block w-100" alt="..."
+                        style={imageStyle} />
                     <div className="carousel-caption d-none d-md-block">
                         <h5>Surprise Box</h5>
                         {/* <p>Some representative placeholder content for the second slide.</p> */}
                     </div>
                 </div>
                 <div className="carousel-item">
-                    <img src="https://cdn.wallpapersafari.com/10/60/PAJEs1.jpg" className="d-block w-100" alt="..." style={imageStyle} />
+                    <img
+                        src={`${process.env.PUBLIC_URL}/assets/images/carousels/carousel2.jpg`}
+                        className="d-block w-100" alt="..."
+                        style={imageStyle} />
                     <div className="carousel-caption d-none d-md-block">
                         <h5>Surprise Box</h5>
                         {/* <p>Some representative placeholder content for the third slide.</p> */}

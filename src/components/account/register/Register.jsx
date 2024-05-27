@@ -1,7 +1,8 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AccountService from "../../../services/AccountService"
+import Header from "../../header/Header";
 
 export default function Register() {
 
@@ -76,17 +77,21 @@ export default function Register() {
     }
 
     return (
-        <section className="vh-100" style={{ backgroundColor: "#eee" }}>
+        <section className="vh-100">
+            <Header />
+
             <div className="container h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
-                    {/* Breadcrumb o day, chu y xem co nen sai ko */}
+
+                    {/*                     
+                    Breadcrumb o day, chu y xem co nen sai ko
                     <div className="row mt-1">
                         <div className="col">
                             <nav
                                 aria-label="breadcrumb"
                                 className="bg-body-tertiary rounded-3 p-3 mb-0"
                             >
-                                {/* Breadcrumb o day, chu y xem co nen sai ko */}
+                                Breadcrumb o day, chu y xem co nen sai ko
                                 <ol className="breadcrumb mb-0">
                                     <li className="breadcrumb-item">
                                         <Link to={'/'}>Home</Link>
@@ -100,7 +105,7 @@ export default function Register() {
                                 </ol>
                             </nav>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="col-lg-10 col-xl-9">
                         <div className="card text-black rounded-3" style={{ marginTop: "-70px" }} >
