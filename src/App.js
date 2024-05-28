@@ -17,6 +17,7 @@ import ProductDetail from './components/shop/productDetail/ProductDetail';
 import Payment from './components/shop/payment/Payment';
 import Order from './components/shop/order/Order';
 import BlogPage from './components/blogs/BlogPage';
+import Wizard from './components/random/Wizard';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path='/payment' element={<Payment />} />
             <Route path='/order' element={<Order />} />
             <Route path='/blogs' element={<BlogPage />} />
+            <Route path='/giftr' element={<Wizard />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

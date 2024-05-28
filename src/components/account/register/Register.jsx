@@ -77,13 +77,14 @@ export default function Register() {
     }
 
     return (
-        <section className="vh-100">
+
+        <>
             <Header />
+            <section className="vh-100">
+                <div className="container h-100">
+                    <div className="row d-flex justify-content-center align-items-center h-100">
 
-            <div className="container h-100">
-                <div className="row d-flex justify-content-center align-items-center h-100">
-
-                    {/*                     
+                        {/*                     
                     Breadcrumb o day, chu y xem co nen sai ko
                     <div className="row mt-1">
                         <div className="col">
@@ -107,122 +108,119 @@ export default function Register() {
                         </div>
                     </div> */}
 
-                    <div className="col-lg-10 col-xl-9">
-                        <div className="card text-black rounded-3" style={{ marginTop: "-70px" }} >
-                            <div className="card-body p-md-5">
-                                <div className="row justify-content-center">
-                                    <div className="col-md-10 col-lg-6 col-xl-6 order-2 order-lg-1">
-                                        <p className="text-center h3 fw-bold mb-3 mx-1 mx-md-4">
-                                            Sign up
-                                        </p>
-                                        <form className="mx-1 mx-md-4">
-                                            <div className="d-flex flex-row align-items-center mb-3">
-                                                <i className="fa-solid fa-signature fa-lg me-3 fa-fw"></i>
-                                                <div
-                                                    data-mdb-input-init=""
-                                                    className="form-outline flex-fill mb-0"
-                                                >
-                                                    <input
-                                                        type="text"
-                                                        // id="form3Example1c"
-                                                        className="form-control"
-                                                        placeholder="Full name *"
-                                                        required
-                                                        name="fullName"
-                                                        onChange={handleChange}
-                                                        value={fullName}
-                                                    />
+                        <div className="col-lg-10 col-xl-9">
+                            <div className="card text-black rounded-3" style={{ marginTop: "-70px" }} >
+                                <div className="card-body p-md-5">
+                                    <div className="row justify-content-center">
+                                        <div className="col-md-10 col-lg-6 col-xl-6 order-2 order-lg-1">
+                                            <p className="text-center h3 fw-bold mb-3 mx-1 mx-md-4">
+                                                Sign up
+                                            </p>
+                                            <form className="mx-1 mx-md-4">
+                                                <div className="d-flex flex-row align-items-center mb-3">
+                                                    <i className="fa-solid fa-signature fa-lg me-3 fa-fw"></i>
+                                                    <div
+                                                        data-mdb-input-init=""
+                                                        className="form-outline flex-fill mb-0"
+                                                    >
+                                                        <input
+                                                            type="text"
+                                                            // id="form3Example1c"
+                                                            className="form-control"
+                                                            placeholder="Full name *"
+                                                            required
+                                                            name="fullName"
+                                                            onChange={handleChange}
+                                                            value={fullName}
+                                                        />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="d-flex flex-row align-items-center mb-3">
-                                                <i className="fas fa-user fa-lg me-3 fa-fw fa-fade" />
-                                                <div
-                                                    data-mdb-input-init=""
-                                                    className="form-outline flex-fill mb-0"
-                                                >
-                                                    <input
-                                                        type="text"
-                                                        // id="form3Example3c"
-                                                        className="form-control"
-                                                        placeholder="User Name *"
-                                                        required
-                                                        name="userName"
-                                                        onChange={handleChange}
-                                                        value={userName}
-                                                    />
+                                                <div className="d-flex flex-row align-items-center mb-3">
+                                                    <i className="fas fa-user fa-lg me-3 fa-fw fa-fade" />
+                                                    <div
+                                                        data-mdb-input-init=""
+                                                        className="form-outline flex-fill mb-0"
+                                                    >
+                                                        <input
+                                                            type="text"                                                            
+                                                            className="form-control"
+                                                            placeholder="User Name *"
+                                                            required
+                                                            name="userName"
+                                                            onChange={handleChange}
+                                                            value={userName}
+                                                        />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="d-flex flex-row align-items-center mb-3">
-                                                <i className="fas fa-lock fa-lg me-3 fa-fw" />
-                                                <div
-                                                    data-mdb-input-init=""
-                                                    className="form-outline flex-fill mb-0"
-                                                >
-                                                    <input
-                                                        type="password"
-                                                        // id="form3Example4c"
-                                                        className="form-control"
-                                                        placeholder="Password *"
-                                                        required
-                                                        name="password"
-                                                        onChange={handleChange}
-                                                        value={password}
-                                                    />
+                                                <div className="d-flex flex-row align-items-center mb-3">
+                                                    <i className="fas fa-lock fa-lg me-3 fa-fw" />
+                                                    <div
+                                                        data-mdb-input-init=""
+                                                        className="form-outline flex-fill mb-0"
+                                                    >
+                                                        <input
+                                                            type="password"                                                            
+                                                            className="form-control"
+                                                            placeholder="Password *"
+                                                            required
+                                                            name="password"
+                                                            onChange={handleChange}
+                                                            value={password}
+                                                        />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="d-flex flex-row align-items-center mb-3">
-                                                <i className="fas fa-envelope fa-lg me-3 fa-fw fa-beat" />
-                                                <div
-                                                    data-mdb-input-init=""
-                                                    className="form-outline flex-fill mb-0"
-                                                >
-                                                    <input
-                                                        type="email"
-                                                        // id="form3Example4cd"
-                                                        className="form-control"
-                                                        placeholder="Email"
-                                                        name="email"
-                                                        onChange={handleChange}
-                                                        value={email}
-                                                    />
+                                                <div className="d-flex flex-row align-items-center mb-3">
+                                                    <i className="fas fa-envelope fa-lg me-3 fa-fw fa-beat" />
+                                                    <div
+                                                        data-mdb-input-init=""
+                                                        className="form-outline flex-fill mb-0"
+                                                    >
+                                                        <input
+                                                            type="email"                                                            
+                                                            className="form-control"
+                                                            placeholder="Email"
+                                                            name="email"
+                                                            onChange={handleChange}
+                                                            value={email}
+                                                        />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="d-flex flex-row align-items-center mb-3">
-                                                <i className="fa-solid fa-phone fa-lg me-3 fa-fw"></i>
-                                                <div
-                                                    data-mdb-input-init=""
-                                                    className="form-outline flex-fill mb-0"
-                                                >
-                                                    <input
-                                                        type="tel"
-                                                        className="form-control"
-                                                        placeholder="Phone *"
-                                                        pattern="0[0-9]{8,10}"
-                                                        required
-                                                        name="phone"
-                                                        onChange={handleChange}
-                                                        value={phone}
-                                                    />
+                                                <div className="d-flex flex-row align-items-center mb-3">
+                                                    <i className="fa-solid fa-phone fa-lg me-3 fa-fw"></i>
+                                                    <div
+                                                        data-mdb-input-init=""
+                                                        className="form-outline flex-fill mb-0"
+                                                    >
+                                                        <input
+                                                            type="tel"
+                                                            className="form-control"
+                                                            placeholder="Phone *"
+                                                            pattern="0[0-9]{8,10}"
+                                                            required
+                                                            name="phone"
+                                                            onChange={handleChange}
+                                                            value={phone}
+                                                        />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="d-flex flex-row align-items-center mb-3">
-                                                <i className="fa-solid fa-location-dot fa-lg me-3 fa-fw fa-bounce"></i>
-                                                <div
-                                                    data-mdb-input-init=""
-                                                    className="form-outline flex-fill mb-0"
-                                                >
-                                                    <input
-                                                        type="text"
-                                                        className="form-control"
-                                                        placeholder="Address"
-                                                        name="address"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={address}
-                                                    />
+                                                <div className="d-flex flex-row align-items-center mb-3">
+                                                    <i className="fa-solid fa-location-dot fa-lg me-3 fa-fw fa-bounce"></i>
+                                                    <div
+                                                        data-mdb-input-init=""
+                                                        className="form-outline flex-fill mb-0"
+                                                    >
+                                                        <input
+                                                            type="text"
+                                                            className="form-control"
+                                                            placeholder="Address"
+                                                            name="address"
+                                                            required
+                                                            onChange={handleChange}
+                                                            value={address}
+                                                        />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {/* <div className="form-check d-flex justify-content-center mb-5">
+                                                {/* <div className="form-check d-flex justify-content-center mb-5">
                                                 <input
                                                     className="form-check-input me-2 border-primary"
                                                     type="checkbox"
@@ -234,34 +232,36 @@ export default function Register() {
                                                     <a href="#!">Terms of service</a>
                                                 </label>
                                             </div> */}
-                                            <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-0">
-                                                <button
-                                                    type="submit"
-                                                    data-mdb-button-init=""
-                                                    data-mdb-ripple-init=""
-                                                    className="btn btn-primary btn-lg gradient-custom-2"
-                                                    style={{ width: "55%" }}
-                                                    onClick={handleSubmit}
-                                                >
-                                                    Register
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div className="col-md-10 col-lg-6 col-xl-5 d-flex align-items-center order-1 order-lg-2 d-none d-lg-flex">
-                                        <img
-                                            // src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                                            src={`${process.env.PUBLIC_URL}/assets/images/logos/logo5.jpg`}
-                                            className="img-fluid"
-                                            alt="logo"
-                                        />
+                                                <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-0">
+                                                    <button
+                                                        type="submit"
+                                                        data-mdb-button-init=""
+                                                        data-mdb-ripple-init=""
+                                                        className="btn btn-primary btn-lg gradient-custom-2"
+                                                        style={{ width: "55%" }}
+                                                        onClick={handleSubmit}
+                                                    >
+                                                        Register
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div className="col-md-10 col-lg-6 col-xl-5 d-flex align-items-center order-1 order-lg-2 d-none d-lg-flex">
+                                            <img
+                                                // src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                                                src={`${process.env.PUBLIC_URL}/assets/images/logos/logo5.jpg`}
+                                                className="img-fluid"
+                                                alt="logo"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>            
+        </>
+
     )
 }

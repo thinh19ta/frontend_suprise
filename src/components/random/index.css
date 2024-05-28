@@ -1,0 +1,32 @@
+.progress-bar-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.top-right-text {
+    position: absolute;
+    top: -1.5rem;
+    /* Adjust this value to move the text higher or lower */
+    font-weight: bold;
+    transition: left 0.3s;
+    /* Smooth transition */
+}
+
+.progress-bar {
+    height: 1.5rem;
+    border-radius: 0.25rem;
+}
+
+.progress-bar-fill {
+    background-color: #76c7c0;
+    transition: width 0.3s;
+}
+
+.wizard-navigation button {
+    margin: 5px;
+}
+
+.btn.active {
+    background-color: #007bff;
+    color: white;
+}

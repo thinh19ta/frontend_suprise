@@ -8,26 +8,15 @@ import CartService from "../../../services/CartService"
 import useAuth from '../../../hooks/useAuth'
 import toast from 'react-hot-toast'
 
-export default function Products() {
+export default function RandomProducts({title, length}) {
 
     const navigate = useNavigate()
     const [products, setProducts] = useState([])
     const [, accountId] = useAuth()
 
     useEffect(() => {
-        // if (categoryId) {
-        //     ProductService.getAllProductsByCategory(categoryId).then(
-        //         res => {
-        //             setProducts(res.data)
-        //         }
-        //     ).catch(
-        //         e => {
-        //             console.log(e)
-        //         }
-        //     )
-        // }
-        // else {
-        ProductService.getAllProducts().then(
+
+        ProductService.getRandomProducts(length).then(
             res => {
                 setProducts(res.data)
             }
@@ -36,9 +25,7 @@ export default function Products() {
                 console.log(e)
             }
         )
-        // }
-        // }, [categoryId])
-    })
+    }, [length])
 
     const handleProductDetail = (productId) => {
         navigate(`/product/${productId}`)
@@ -75,47 +62,11 @@ export default function Products() {
                     <div className="container-fluid p-0">
                         {" "}
                         <Link className="navbar-brand text-uppercase fw-800">
-                            <span className="border-red pe-2">New</span>Product
+                            <span className="border-red pe-2">{title}</span>
                         </Link>{" "}
-                        <button
-                            className="navbar-toggler"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#myNav"
-                            aria-controls="myNav"
-                            aria-expanded="false"
-                            aria-label="Toggle navigation"
-                        >
-                            {" "}
-                            <span className="fas fa-bars" />{" "}
-                        </button>
-                        <div className="collapse navbar-collapse" id="myNav">
-                            <div className="navbar-nav ms-auto">
-                                {" "}
-                                <Link className="nav-link" aria-current="page">
-                                    All
-                                </Link>{" "}
-                                <Link className="nav-link">
-                                    Women's
-                                </Link>{" "}
-                                <Link className="nav-link">
-                                    Men's
-                                </Link>{" "}
-                                <Link className="nav-link">
-                                    Kid's
-                                </Link>{" "}
-                                <Link className="nav-link">
-                                    Accessories
-                                </Link>{" "}
-                                <Link className="nav-link">
-                                    Cosmetics
-                                </Link>{" "}
-                            </div>
-                        </div>
                     </div>
                 </nav>
                 <div className="row">
-
                     {
                         products.map(
                             product => (

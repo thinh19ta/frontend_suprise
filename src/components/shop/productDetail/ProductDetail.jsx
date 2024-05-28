@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductService from "../../../services/ProductService"
 import CurrencyFormat from "react-currency-format"
@@ -6,6 +6,7 @@ import Header from "../../header/Header";
 import CartService from "../../../services/CartService"
 import useAuth from '../../../hooks/useAuth'
 import toast from 'react-hot-toast'
+import RandomProducts from "../products/RandomProducts";
 
 export default function ProductDetail() {
 
@@ -24,7 +25,7 @@ export default function ProductDetail() {
 
 
     const handleAddCart = (productId) => {
-        if(accountId == null){
+        if (accountId == null) {
             navigate('/login')
             toast.error("Please login!")
             return
@@ -46,14 +47,14 @@ export default function ProductDetail() {
         <>
             <Header />
             {/* Add breadcrumb o day */}
-            <div className="row">
+            {/* <div className="row">
                 <div className="col">
                     <nav
                         aria-label="breadcrumb"
                         className="bg-body-tertiary rounded-3 p-3 mb-4"
                     >
 
-                        {/* Breadcrumb o day, chu y xem co nen sai ko */}
+                        Breadcrumb o day, chu y xem co nen sai ko
                         <ol className="breadcrumb mb-0">
                             <li className="breadcrumb-item">
                                 <Link to={'/'}>Home</Link>
@@ -67,9 +68,8 @@ export default function ProductDetail() {
                         </ol>
                     </nav>
                 </div>
-            </div>
+            </div> */}
 
-            {/* Add breadcrumb o day */}
             <section className="py-5 bg-white">
                 <div className="container px-4 px-lg-5 my-5">
                     <div className="row gx-4 gx-lg-5 align-items-center">
@@ -109,6 +109,7 @@ export default function ProductDetail() {
                     </div>
                 </div>
             </section>
+            <RandomProducts title={'Related products'} length={8} />
         </>
     )
 }

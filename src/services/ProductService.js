@@ -14,6 +14,10 @@ class ProductService {
         return axios.get(url)
     }
 
+    getRandomProducts(length) {
+        return axios.get(`${url}/random/${length}`)
+    }
+
     getAllProductsByCategory(categoryId) {
         return axios.get(`${url}/category/${categoryId}`)
     }
