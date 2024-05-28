@@ -75,7 +75,6 @@ export default function LoginPage() {
                     </div>
                 </div> */}
 
-
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col-xl-10">
                             <div className="card rounded-3 text-black">

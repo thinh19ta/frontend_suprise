@@ -77,11 +77,10 @@ export default function Register() {
     }
 
     return (
-
         <>
             <Header />
-            <section className="vh-100">
-                <div className="container h-100">
+            <section className="h-100">
+                <div className="container py-5 h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
 
                         {/*                     
@@ -109,7 +108,8 @@ export default function Register() {
                     </div> */}
 
                         <div className="col-lg-10 col-xl-9">
-                            <div className="card text-black rounded-3" style={{ marginTop: "-70px" }} >
+                            {/* Remove  style={{ marginTop: "-70px" }}  under */}
+                            <div className="card text-black rounded-3">
                                 <div className="card-body p-md-5">
                                     <div className="row justify-content-center">
                                         <div className="col-md-10 col-lg-6 col-xl-6 order-2 order-lg-1">
@@ -142,7 +142,7 @@ export default function Register() {
                                                         className="form-outline flex-fill mb-0"
                                                     >
                                                         <input
-                                                            type="text"                                                            
+                                                            type="text"
                                                             className="form-control"
                                                             placeholder="User Name *"
                                                             required
@@ -159,7 +159,7 @@ export default function Register() {
                                                         className="form-outline flex-fill mb-0"
                                                     >
                                                         <input
-                                                            type="password"                                                            
+                                                            type="password"
                                                             className="form-control"
                                                             placeholder="Password *"
                                                             required
@@ -176,7 +176,7 @@ export default function Register() {
                                                         className="form-outline flex-fill mb-0"
                                                     >
                                                         <input
-                                                            type="email"                                                            
+                                                            type="email"
                                                             className="form-control"
                                                             placeholder="Email"
                                                             name="email"
@@ -260,7 +260,7 @@ export default function Register() {
                         </div>
                     </div>
                 </div>
-            </section>            
+            </section>
         </>
 
     )
