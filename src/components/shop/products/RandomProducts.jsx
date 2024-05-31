@@ -96,7 +96,7 @@ export default function RandomProducts({title, length}) {
                                             </li>
                                         </ul>
                                     </div>
-                                    <div className="tag bg-green">new</div>
+                                    {/* <div className="tag bg-green">new</div> */}
                                     <div className="title pt-4 pb-1">{product.name}</div>
                                     <div className="d-flex align-content-center justify-content-center">
                                         {" "}

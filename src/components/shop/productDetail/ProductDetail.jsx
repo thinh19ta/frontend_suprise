@@ -2,11 +2,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductService from "../../../services/ProductService"
 import CurrencyFormat from "react-currency-format"
-import Header from "../../header/Header";
 import CartService from "../../../services/CartService"
 import useAuth from '../../../hooks/useAuth'
 import toast from 'react-hot-toast'
 import RandomProducts from "../products/RandomProducts";
+import Header from "../../layouts/header/Header";
 
 export default function ProductDetail() {
 

@@ -2,7 +2,8 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import AccountService from "../../../services/AccountService"
-import Header from "../../header/Header";
+import Header from "../../layouts/header/Header";
+
 
 export default function Register() {
 

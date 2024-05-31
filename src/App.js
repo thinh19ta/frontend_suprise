@@ -22,7 +22,7 @@ import Wizard from './components/random/Wizard';
 function App() {
   return (
     <div>
-      <Toaster position="top-right" reverseOrder={false}/>
+      <Toaster position="top-right" reverseOrder={false} />
       <AuthProvider>
         <BrowserRouter>
           <Routes>

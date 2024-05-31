@@ -1,8 +1,9 @@
-import Header from "../../header/Header";
+
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import AccountService from "../../../services/AccountService"
 import Order from "../../shop/order/Order";
+import Header from "../../layouts/header/Header";
 
 
 export default function Profile() {

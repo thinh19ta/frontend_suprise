@@ -39,7 +39,7 @@ export default function Carousel() {
             <div className="carousel-inner">
                 <div className="carousel-item active">
                     <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/carousels/carousel3.jpg`}
+                        src={`${process.env.PUBLIC_URL}/assets/images/carousels/carousel4.jpg`}
                         className="d-block w-100" alt="..."
                         style={imageStyle} />
                     <div className="carousel-caption d-none d-md-block">
@@ -59,7 +59,7 @@ export default function Carousel() {
                 </div>
                 <div className="carousel-item">
                     <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/carousels/carousel2.jpg`}
+                        src={`${process.env.PUBLIC_URL}/assets/images/carousels/carousel5.jpg`}
                         className="d-block w-100" alt="..."
                         style={imageStyle} />
                     <div className="carousel-caption d-none d-md-block">

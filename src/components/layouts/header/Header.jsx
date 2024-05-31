@@ -1,8 +1,8 @@
 import { Link, NavLink } from 'react-router-dom'
 import './index.css'
-import useAuth from '../../hooks/useAuth'
+import useAuth from '../../../hooks/useAuth'
 import { useContext } from 'react'
-import { AuthContext } from '../../hooks/AuthContext'
+import { AuthContext } from '../../../hooks/AuthContext'
 import toast from 'react-hot-toast'
 
 export default function Header() {

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './index.css'
 import Step from './Step';
 import ProgressBar from './ProgressBar';
-import Header from '../header/Header';
 import RandomProducts from '../shop/products/RandomProducts';
+import Header from '../layouts/header/Header';
 
 const Wizard = () => {
     const [currentStep, setCurrentStep] = useState(1);

@@ -4,7 +4,7 @@ import { AuthContext } from '../../../hooks/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import AccountService from "../../../services/AccountService"
 import toast from 'react-hot-toast'
-import Header from '../../header/Header'
+import Header from '../../layouts/header/Header'
 
 
 export default function LoginPage() {

@@ -8,7 +8,8 @@ import CurrencyFormat from 'react-currency-format';
 import toast from 'react-hot-toast';
 import AccountService from "../../../services/AccountService";
 import { Modal, Button } from 'react-bootstrap';
-import Header from '../../header/Header';
+import Header from '../../layouts/header/Header';
+
 
 export default function Cart() {
     const [, accountId] = useAuth();
@@ -118,7 +119,7 @@ export default function Cart() {
             OrderService.addOrder(orderData)
                 .then(res => {
                     console.log(res);
-                    navigate('/order');
+                    navigate('/profile');
                 })
                 .catch(e => {
                     console.log(e);
