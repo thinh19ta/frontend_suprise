@@ -240,16 +240,16 @@ export default function Cart() {
                                     </div>
                                     <div className="col-lg-4 bg-grey">
                                         <div className="p-5">
-                                            <h3 className="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                                            <h3 className="fw-bold mb-5 mt-2 pt-1">Tóm tắt</h3>
                                             <hr className="my-4" />
-                                            <h5 className="text-uppercase mb-3">Payment method</h5>
+                                            <h5 className="text-uppercase mb-3">Phương thức thanh toán</h5>
                                             <div className="mb-4 pb-2">
                                                 <select onChange={(e) => setPaymentMethod(parseInt(e.target.value))}>
                                                     <option value={1}>C.O.D</option>
                                                     <option value={2}>Banking (Vietcombank)</option>
                                                 </select>
                                             </div>
-                                            <h5 className="text-uppercase mb-3">Shipping address</h5>
+                                            <h5 className="text-uppercase mb-3">Địa chỉ giao hàng</h5>
                                             {
                                                 account.address ? <h3>{account.address}</h3>
                                                     :
@@ -267,7 +267,7 @@ export default function Cart() {
 
                                             <hr className="my-4" />
                                             <div className="d-flex justify-content-between mb-5">
-                                                <h5 className="text-uppercase">Total price</h5>
+                                                <h5 className="text-uppercase">Tổng tiền</h5>
                                                 <h5><CurrencyFormat value={totalPrice} displayType={'text'} thousandSeparator={true} suffix={' vnđ'} /></h5>
                                             </div>
                                             <button
@@ -275,7 +275,7 @@ export default function Cart() {
                                                 className="btn btn-dark btn-block btn-lg"
                                                 onClick={handleShowModal}
                                             >
-                                                Check out
+                                                Thanh toán
                                             </button>
                                         </div>
                                     </div>
@@ -310,7 +310,7 @@ export default function Cart() {
                     <Modal.Title>Banking Payment</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <h5>Total price: <CurrencyFormat value={totalPrice} displayType={'text'} thousandSeparator={true} suffix={' vnđ'} /></h5>
+                    <h5>Tổng: <CurrencyFormat value={totalPrice} displayType={'text'} thousandSeparator={true} suffix={' vnđ'} /></h5>
                     {/* Placeholder for QR code image */}
                     <div className="d-flex justify-content-center">
                         <img
@@ -324,10 +324,10 @@ export default function Cart() {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowBankingModal(false)}>
-                        Pay Later
+                        Trả sau
                     </Button>
                     <Button variant="primary" onClick={handleConfirmBankingCheckout}>
-                        Done
+                        Thanh toán
                     </Button>
                 </Modal.Footer>
             </Modal>

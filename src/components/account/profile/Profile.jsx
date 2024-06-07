@@ -125,7 +125,7 @@ export default function Profile() {
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col-sm-3">
-                                            <p className="mb-0">Full Name</p>
+                                            <p className="mb-0">Họ tên</p>
                                         </div>
                                         <div className="col-sm-9">
                                             <p className="text-muted mb-0">{account.fullName}</p>
@@ -143,7 +143,7 @@ export default function Profile() {
                                     <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
-                                            <p className="mb-0">Phone</p>
+                                            <p className="mb-0">Số điện thoại</p>
                                         </div>
                                         <div className="col-sm-9">
                                             <p className="text-muted mb-0">{account.phone}</p>
@@ -152,7 +152,7 @@ export default function Profile() {
                                     <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
-                                            <p className="mb-0">Address</p>
+                                            <p className="mb-0">Địa chỉ giao hàng</p>
                                         </div>
                                         <div className="col-sm-9">
                                             <p className="text-muted mb-0">{account.address}</p>

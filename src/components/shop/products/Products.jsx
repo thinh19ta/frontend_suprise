@@ -75,7 +75,7 @@ export default function Products() {
                     <div className="container-fluid p-0">
                         {" "}
                         <Link className="navbar-brand text-uppercase fw-800">
-                            <span className="border-red pe-2">New</span>Product
+                            <span className="border-red pe-2">Sản phẩm</span>mới
                         </Link>{" "}
                         <button
                             className="navbar-toggler"
@@ -89,7 +89,7 @@ export default function Products() {
                             {" "}
                             <span className="fas fa-bars" />{" "}
                         </button>
-                        <div className="collapse navbar-collapse" id="myNav">
+                        {/* <div className="collapse navbar-collapse" id="myNav">
                             <div className="navbar-nav ms-auto">
                                 {" "}
                                 <Link className="nav-link" aria-current="page">
@@ -111,7 +111,7 @@ export default function Products() {
                                     Cosmetics
                                 </Link>{" "}
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </nav>
                 <div className="row">

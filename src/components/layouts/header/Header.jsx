@@ -26,7 +26,7 @@ export default function Header() {
                                     <option value="en-us">EN-US</option>
                                 </select>
                                 <span className="d-none d-lg-inline-block d-md-inline-block d-sm-inline-block d-xs-none me-3">
-                                    <strong>surprisebox@gmail.com</strong>
+                                    <strong><a href="https://www.facebook.com/surpriseebox.vn" className='text-decoration-none'><i class="fa-brands fa-facebook"></i> Fanpage</a></strong>
                                 </span>
                                 <span className="me-3">
                                     <i className="fa-solid fa-phone me-1 text-warning" />{" "}
@@ -103,7 +103,7 @@ export default function Header() {
                                         // activeClassName="active"
                                         to={'/'}
                                     >
-                                        Home
+                                        Trang chủ
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
@@ -112,7 +112,7 @@ export default function Header() {
                                         // activeClassName="active"
                                         to={'/shop'}
                                     >
-                                        Shop
+                                        Cửa hàng
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
@@ -130,7 +130,7 @@ export default function Header() {
                                         // activeClassName="active"
                                         to={'/about'}
                                     >
-                                        About us
+                                        Liên hệ
                                     </NavLink>
                                 </li>
                             </ul>
@@ -140,7 +140,7 @@ export default function Header() {
                                     {
                                         accountId &&
                                         <Link className="nav-link mx-2 text-uppercase" to={'/cart'}>
-                                            <i className="fa-solid fa-cart-shopping me-1" /> Cart
+                                            <i className="fa-solid fa-cart-shopping me-1" /> Giỏ hàng
                                         </Link>
                                     }
                                 </li>
@@ -150,16 +150,16 @@ export default function Header() {
                                             <div className='dropdown'>
                                                 <Link className="nav-link mx-2 text-uppercase dropdown-toggle"
                                                     id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i className="fa-solid fa-circle-user me-1" /> Account
+                                                    <i className="fa-solid fa-circle-user me-1" /> Tài khoản
                                                 </Link>
                                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                    <li><Link className="dropdown-item" to={'/profile'}>My profile</Link></li>
-                                                    <li><Link className="dropdown-item" onClick={handleLogout}>Log out</Link></li>
+                                                    <li><Link className="dropdown-item" to={'/profile'}>Thông tin</Link></li>
+                                                    <li><Link className="dropdown-item" onClick={handleLogout}>Đăng xuất</Link></li>
                                                 </ul>
                                             </div>
                                             :
                                             <Link className="nav-link mx-2 text-uppercase" to={'/login'}>
-                                                <i className="fa-solid fa-right-to-bracket"></i> Login
+                                                <i className="fa-solid fa-right-to-bracket"></i> Đăng nhập
                                             </Link>
                                     }
                                 </li>

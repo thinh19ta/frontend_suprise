@@ -38,11 +38,11 @@ export default function Order() {
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Order Date</th>
-                        <th scope="col">Payment status</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Details</th>
+                        <th scope="col">Tổng</th>
+                        <th scope="col">Ngày đặt hàng</th>
+                        <th scope="col">Trạng thái thanh toán</th>
+                        <th scope="col">Trạng thái đơn hàng</th>
+                        <th scope="col">Chi tiết</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -101,7 +101,7 @@ export default function ProductDetail() {
                                 <button className="btn btn-outline-dark flex-shrink-0" type="button"
                                     onClick={() => handleAddCart(product.id)}
                                 >
-                                    Add to cart{" "}
+                                    Thêm vào giỏ hàng{" "}
                                     <i className="fa-solid fa-cart-shopping fa-bounce"></i>
                                 </button>
                             </div>
