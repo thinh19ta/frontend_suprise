@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
     <div className="container-fluid" style={{ backgroundColor: "#eee" }}>
@@ -34,78 +36,77 @@ export default function Footer() {
             </ul>
           </div> */}
           <div className="col-5 col-md-3 mb-3 ms-5">
-            <h5>Section</h5>
+          <h5>Tính năng</h5>
             <ul className="nav flex-column">
               <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-body-secondary">
-                  Home
-                </a>
+                <Link to="#" className="nav-link p-0 text-body-secondary">
+                  Trang chủ
+                </Link>
               </li>
               <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-body-secondary">
-                  Features
-                </a>
+                <Link to="#" className="nav-link p-0 text-body-secondary">
+                  Tính năng
+                </Link>
               </li>
-              <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-body-secondary">
-                  Pricing
-                </a>
+              <li to="nav-item mb-2">
+                <Link to="#" className="nav-link p-0 text-body-secondary">
+                  Liên hệ
+                </Link>
               </li>
-              <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-body-secondary">
+              <li to="nav-item mb-2">
+                <Link to="#" className="nav-link p-0 text-body-secondary">
                   FAQs
-                </a>
+                </Link>
               </li>
               <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-body-secondary">
-                  About
-                </a>
+                <Link to="#" className="nav-link p-0 text-body-secondary">
+                  Về Surprise Box
+                </Link>
               </li>
             </ul>
           </div>
           <div className="col-5 col-md-2 mb-3">
-            <h5>Section</h5>
+            <h5>Tính năng</h5>
             <ul className="nav flex-column">
               <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-body-secondary">
-                  Home
-                </a>
+                <Link to="#" className="nav-link p-0 text-body-secondary">
+                  Trang chủ
+                </Link>
               </li>
               <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-body-secondary">
-                  Features
-                </a>
+                <Link to="#" className="nav-link p-0 text-body-secondary">
+                  Tính năng
+                </Link>
               </li>
-              <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-body-secondary">
-                  Pricing
-                </a>
+              <li to="nav-item mb-2">
+                <Link to="#" className="nav-link p-0 text-body-secondary">
+                  Liên hệ
+                </Link>
               </li>
-              <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-body-secondary">
+              <li to="nav-item mb-2">
+                <Link to="#" className="nav-link p-0 text-body-secondary">
                   FAQs
-                </a>
+                </Link>
               </li>
               <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-body-secondary">
-                  About
-                </a>
+                <Link to="#" className="nav-link p-0 text-body-secondary">
+                  Về Surprise Box
+                </Link>
               </li>
             </ul>
           </div>
           <div className="col-md-5 offset-md-1 mb-3">
             <form>
               <h5>Subscribe to our newsletter</h5>
-              <p>Monthly digest of what's new and exciting from us.</p>
               <div className="d-flex flex-column flex-sm-row w-100 gap-2">
                 <label htmlFor="newsletter1" className="visually-hidden">
-                  Email address
+                  Địa chỉ Email
                 </label>
                 <input
                   id="newsletter1"
                   type="text"
                   className="form-control"
-                  placeholder="Email address"
+                  placeholder="Địa chỉ Email"
                   fdprocessedid="ed2eb"
                 />
                 <button

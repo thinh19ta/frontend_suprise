@@ -109,7 +109,7 @@ export default function ProductDetail() {
                     </div>
                 </div>
             </section>
-            <RandomProducts title={'Related products'} length={8} />
+            <RandomProducts title={'Sản phẩm liên quan'} length={8} />
         </>
     )
 }
